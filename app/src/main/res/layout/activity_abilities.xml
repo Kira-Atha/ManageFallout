@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Abilities">
+
+    <LinearLayout
+        android:id="@+id/layout_abilities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_abilities"
+            android:layout_gravity="center"
+            android:textSize="32dp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_button_pannel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/button_form"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_form"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"/>
+
+            <Button
+                android:id="@+id/button_bag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_bag"
+                android:layout_marginRight="10dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"/>
+
+
+            <Button
+                android:id="@+id/button_notes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_notes"
+                android:minHeight="0dp"
+                android:minWidth="0dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_abilities_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_abilities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_abilities"
+                android:layout_marginLeft="10dp"
+                android:textSize="22dp"/>
+
+            <ListView
+                android:layout_width="700px"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/layout_add_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right|bottom">
+
+            <Button
+                android:id="@+id/button_add_ability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_add"
+                android:layout_marginRight="20dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"/>
+            <Button
+                android:id="@+id/button_delete_ability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_delete"
+                android:layout_marginRight="20dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
