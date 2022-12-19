@@ -93,9 +93,13 @@ public class Form extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             String exp_value = add_exp.getText().toString();
                             player.earnExp(Integer.parseInt(exp_value));
+                            reloadFormActivity();
+                            /*
                             tv_exp_curr.setText(new StringBuilder().append(player.getExp()).append("/").append(player.getMaxExp()).toString());
                             tv_level_curr.setText(String.valueOf(player.getLevel()));
                             tv_hp_curr.setText(new StringBuilder().append(player.getHpCurr()).append("/").append(player.getHpMax()).toString());
+
+                             */
                         }
                     });
                     alert.show();
@@ -152,7 +156,7 @@ public class Form extends AppCompatActivity {
                             if(!player.usePA(Integer.parseInt(pa_value))){
                                 Toast.makeText(getApplication().getBaseContext(),R.string.notEnoughPA,Toast.LENGTH_LONG).show();
                             }
-                            tv_pa_curr.setText(new StringBuilder().append(player.getPa()).append("/").append(maxPa).toString());
+                            tv_pa_curr.setText(new StringBuilder().append(player.getPaCurr()).append("/").append(maxPa).toString());
                         }
                     });
                     alert.show();
@@ -170,7 +174,7 @@ public class Form extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             String pa_value = add_pa.getText().toString();
                             player.receivePA(Integer.parseInt(pa_value));
-                            tv_pa_curr.setText(new StringBuilder().append(player.getPa()).append("/").append(maxPa).toString());
+                            tv_pa_curr.setText(new StringBuilder().append(player.getPaCurr()).append("/").append(maxPa).toString());
                         }
                     });
                     alert.show();
@@ -272,7 +276,6 @@ public class Form extends AppCompatActivity {
                     Toast.makeText(getApplication().getBaseContext(),R.string.pseudoTooLong,Toast.LENGTH_LONG).show();
                 }
                 player.setPseudo(et_pseudo.getText().toString());
-
                 player.create();
 
             }
@@ -311,7 +314,7 @@ public class Form extends AppCompatActivity {
 
         //pa
         tv_pa_curr = findViewById(R.id.tv_pa_curr);
-        tv_pa_curr.setText(new StringBuilder().append(player.getPa()).append("/").append(maxPa).toString());
+        tv_pa_curr.setText(new StringBuilder().append(player.getPaCurr()).append("/").append(maxPa).toString());
 
         Button button_pa_add = findViewById(R.id.button_pa_add);
         button_pa_add.setOnClickListener(onClickListener);
@@ -371,5 +374,11 @@ public class Form extends AppCompatActivity {
         button_dice_6.setOnClickListener(onClickListener);
         Button button_dice_20 = findViewById(R.id.button_dice_20);
         button_dice_20.setOnClickListener(onClickListener);
+    }
+
+    public void reloadFormActivity(){
+        intent = new Intent(Form.this,Form.class);
+        intent.putExtra("player",player);
+        startActivity(intent);
     }
 }

@@ -25,12 +25,13 @@ public class Player implements Serializable {
     private int intelligence=5;
     private int agility=5;
     private int luck=5;
-    private int initiative=0;
+    private int initiative;
     private int def_ra = 0;
     private int ra_curr = 0;
-    private int hpMax=0;
-    private int hpCurr=0;
-    private int pa=2;
+    private int hpMax;
+    private int hpCurr;
+    private int paCurr;
+
     private int maxExp=0;
     private int def = 1;
     private int maxAsset = 3;
@@ -40,10 +41,12 @@ public class Player implements Serializable {
     public Player(){
         this.pseudo ="choisir";
         this.race = "choisir";
+        this.hpMax = getHpMax();
+        this.initiative = getInitiative();
         this.hpCurr = hpMax;
         playerSkills = Skill.findAll();
     }
-    public Player(String pseudo, String race, int level, int strong, int perception, int endurance,int charisma, int intelligence, int agility, int luck,int expCurr){
+    public Player(int id,String pseudo, String race, int level, int strong, int perception, int endurance,int charisma, int intelligence, int agility, int luck,int expCurr,int hpCurr,int paCurr){
         this.pseudo = pseudo;
         this.race = race;
         this.level = level;
@@ -59,7 +62,10 @@ public class Player implements Serializable {
         this.hpMax = getHpMax();
         this.initiative = getInitiative();
         //RECUP PA BDD
+        this.hpCurr = hpCurr;
+        this.paCurr = paCurr;
     }
+    /*
     public Player(int id,String pseudo, String race, int level, int strong, int perception, int endurance,int charisma, int intelligence, int agility, int luck,int expCurr){
         this.pseudo = pseudo;
         this.race = race;
@@ -76,6 +82,7 @@ public class Player implements Serializable {
         this.hpMax = getHpMax();
         this.initiative = getInitiative();
     }
+     */
     public String getPseudo() {
         return pseudo;
     }
@@ -139,8 +146,8 @@ public class Player implements Serializable {
     public int getHpCurr(){
         return hpCurr;
     }
-    public int getPa() {
-        return pa;
+    public int getPaCurr() {
+        return paCurr;
     }
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
@@ -181,11 +188,11 @@ public class Player implements Serializable {
     public void setHpMax(int hp) {
         this.hpMax = hp;
     }
-    public void setHpCurr(int hp){
+    public void setHpCurr(int hp) {
         this.hpCurr = hp;
     }
     public void setPa(int pa) {
-        this.pa = pa;
+        this.paCurr = pa;
     }
     public int getMaxExp() {
         //int[] expScale = {0,100,300,600,1000,1500,2100,2800,3600,4500,0,0,7800,9100,10500,12000,13600,15300,17100,19000,21000};
@@ -228,6 +235,7 @@ public class Player implements Serializable {
     }
     public void levelUp(){
         this.setLevel(this.getLevel()+1);
+        this.getStock_skill_points();
     }
     public void takingDamage(int damage){
         int newHp = this.getHpCurr() - damage;
@@ -244,17 +252,17 @@ public class Player implements Serializable {
         this.setHpCurr(newHp);
     }
     public void receivePA(int pa){
-        if(this.pa < 6){
-            if(this.pa + pa >=6 ){
+        if(this.paCurr < 6){
+            if(this.paCurr + pa >=6 ){
                 this.setPa(6);
             }else{
-                this.setPa(this.pa+pa);
+                this.setPa(this.paCurr+pa);
             }
         }
     }
     public boolean usePA(int pa){
-        if(this.pa - pa >=0){
-            this.pa = this.pa - pa;
+        if(this.paCurr - pa >=0){
+            this.paCurr = this.paCurr - pa;
             return true;
         }else{
             return false;
@@ -283,23 +291,26 @@ public class Player implements Serializable {
 
 
     public boolean choosePersonalAsset(Skill skill){
-        int countPersonalAsset = 0;
-
-        for (Skill sk:this.getPlayerSkills()) {
-            if(sk.isPersonalAsset()){
-                countPersonalAsset+=1;
-                System.out.println("Total personnal asset = "+countPersonalAsset);
-            }
-        }
-        if(countPersonalAsset < maxAsset ){
+        if(this.getCurrentPersonalAsset() < maxAsset ){
             this.makePersonalAsset(skill);
             System.out.println("C'est possible");
             return true;
         }
         return false;
     }
+    public int getCurrentPersonalAsset() {
+        int countPersonalAsset = 0;
+
+        for (Skill sk : this.getPlayerSkills()) {
+            if (sk.isPersonalAsset()) {
+                countPersonalAsset += 1;
+            }
+        }
+        System.out.println(countPersonalAsset);
+        return countPersonalAsset;
+    }
     public void makePersonalAsset(Skill skill){
-        this.getPlayerSkills().get(skill.getId()).isPersonalAsset();
+        this.getPlayerSkills().get(skill.getId()-1).setPersonalAsset(true);
     }
     public int[] getDice20Results(int[] launchesDice,int num_skill, int num_SPECIAL,int complication){
         int[] results = new int[3];
@@ -345,7 +356,7 @@ public class Player implements Serializable {
 
     public int getStock_skill_points(){
         //Ne pas oublier les points générés par les abilités lorsque ça sera implémanté
-        return this.getLevel()+3;
+        return (this.getLevel()+3)-1;
     }
 
     public boolean useStock_skill_points(Skill skill){
@@ -354,7 +365,8 @@ public class Player implements Serializable {
         int total_point = getStock_skill_points();
         System.out.println(total_point);
         if(total_point>used_point){
-            this.playerSkills.get(skill.getId()).levelUpSkill();
+            this.playerSkills.get(skill.getId()-1).levelUpSkill();
+            //System.out.println("L'id du skill " +skill.getName()+" est : "+String.valueOf(skill.getId()));
             return true;
         }
         return false;
@@ -367,8 +379,6 @@ public class Player implements Serializable {
         }
         return total_used;
     }
-
-///TRY DAO
 
     public boolean create(){
         return daoPlayer.create(this);

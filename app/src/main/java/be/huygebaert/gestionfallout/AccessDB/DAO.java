@@ -35,7 +35,9 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
                 "    IntelligencePlayer INTEGER,\n" +
                 "    AgilityPlayer      INTEGER,\n" +
                 "    LuckPlayer         INTEGER,\n" +
-                "    ExpCurrPlayer      INTEGER\n" +
+                "    ExpCurrPlayer      INTEGER,\n" +
+                "    HpCurrPlayer       INTEGER,\n" +
+                "    PaCurrPlayer       INTEGER\n" +
                 ");"
         );
 

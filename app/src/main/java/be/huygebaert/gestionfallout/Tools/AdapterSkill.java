@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,7 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
     private List<Skill> allSkills;
     private static LayoutInflater inflater = null;
     private ViewHolder holder;
+    private View vi;
 
     public AdapterSkill (Activity activity, int textViewResourceId,Player player) {
         super(activity, textViewResourceId, player.getPlayerSkills());
@@ -52,7 +56,7 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        View vi = convertView;
+        vi = convertView;
 
         try {
             if (convertView == null) {
@@ -62,6 +66,9 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
                 holder.tv_skill_name = (TextView) vi.findViewById(R.id.tv_skill_name);
                 holder.tv_skill_level = (TextView) vi.findViewById(R.id.tv_skill_level);
                 holder.box_personalAsset = (CheckBox) vi.findViewById(R.id.box_personalAsset);
+                if(allSkills.get(position).isPersonalAsset()){
+                    holder.box_personalAsset.setChecked(true);
+                }
                 holder.add_skill = (TextView) vi.findViewById(R.id.add_skill);
                 vi.setTag(holder);
             } else {
@@ -71,24 +78,28 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
 
             holder.tv_skill_name.setText(allSkills.get(position).getName());
             holder.tv_skill_level.setText(String.valueOf(allSkills.get(position).getLevel()));
-            if(allSkills.get(position).isPersonalAsset()){
-                holder.box_personalAsset.isChecked();
-            }
-            holder.box_personalAsset.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(player.choosePersonalAsset(skillChosen)){
-                        holder.box_personalAsset.isChecked();
+
+            holder.box_personalAsset.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                    if(isChecked){
+                        if(player.choosePersonalAsset(skillChosen)){
+                            notifyDataSetChanged();
+                            show_checkbox();
+                        }else{
+                            holder.box_personalAsset.setChecked(false);
+                        }
                     }
                 }
             });
+            show_checkbox();
+
             holder.add_skill.setText("+");
             holder.add_skill.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     System.out.println("HEY");
                     player.useStock_skill_points(skillChosen);
-                    holder.tv_skill_level.setText(String.valueOf(skillChosen.getLevel()));
+                    notifyDataSetChanged();
                     show_button_plus();
                 }
             });
@@ -103,6 +114,12 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
             holder.add_skill.setVisibility(View.INVISIBLE);
         }else{
             holder.add_skill.setVisibility(View.VISIBLE);
+        }
+    }
+    public void show_checkbox(){
+        if(player.getCurrentPersonalAsset()==player.getMaxAsset()){
+            System.out.println("Check box invisible");
+            holder.box_personalAsset.setEnabled(false);
         }
     }
 }
