@@ -97,7 +97,7 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
             holder.add_skill.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    System.out.println("HEY");
+                    //System.out.println("HEY");
                     player.useStock_skill_points(skillChosen);
                     notifyDataSetChanged();
                     show_button_plus();
@@ -118,7 +118,7 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
     }
     public void show_checkbox(){
         if(player.getCurrentPersonalAsset()==player.getMaxAsset()){
-            System.out.println("Check box invisible");
+            //System.out.println("Check box invisible");
             holder.box_personalAsset.setEnabled(false);
         }
     }

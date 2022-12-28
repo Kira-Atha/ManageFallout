@@ -1,4 +1,4 @@
-package be.huygebaert.gestionfallout;
+package be.huygebaert.gestionfallout.Tools;
 
 import android.app.Application;
 import android.content.Context;

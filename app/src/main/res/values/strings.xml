@@ -16,7 +16,7 @@
     <string name="tv_intelligence">INT </string>
     <string name="tv_agility">AGI </string>
     <string name="tv_luck">CHA </string>
-    <string name="tv_race">Race </string>
+    <string name="tv_race">Origine </string>
     <string name="tv_pseudo">Pseudo </string>
     <string name="tv_level">Niv. </string>
     <string name="tv_exp">EXP </string>
@@ -40,4 +40,7 @@
     <string name="launch">Lancer</string>
     <string name="notEnoughPA">Impossible ! Pas assez de PA </string>
     <string name="pseudoTooLong">Pseudo trop long ! Écrasement des derniers caractères</string>
+    <string name="new_sheet">Nouvelle fiche</string>
+    <string name="title_sheet">Choisir personnage</string>
+    <string name="button_save">Créer</string>
 </resources>

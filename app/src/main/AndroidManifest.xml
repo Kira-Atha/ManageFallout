@@ -3,13 +3,21 @@
     package="be.huygebaert.gestionfallout">
 
     <application
-        android:name="be.huygebaert.gestionfallout.Fallout"
+        android:name=".Tools.Fallout"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GestionFallout">
+        <activity
+            android:name=".ChooseCharacter"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Dice20"
             android:exported="true" />
@@ -24,13 +32,7 @@
             android:exported="true" />
         <activity
             android:name=".Form"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"/>
     </application>
 
 </manifest>

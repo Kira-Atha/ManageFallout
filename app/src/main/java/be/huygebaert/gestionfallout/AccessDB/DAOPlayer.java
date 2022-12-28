@@ -4,15 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.SimpleCursorAdapter;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import be.huygebaert.gestionfallout.Fallout;
 import be.huygebaert.gestionfallout.Models.Player;
+import be.huygebaert.gestionfallout.Models.Skill;
 
 public class DAOPlayer extends DAO<Player> {
 
@@ -38,8 +36,10 @@ public class DAOPlayer extends DAO<Player> {
         values.put("HpCurrPlayer",player.getHpCurr());
         values.put("PaCurrPlayer",player.getPaCurr());
 
-        if (db.insert("Player", null, values) > 0) {
+        long newId = db.insert("Player", null, values);
+        if (newId != 1) {
             db.close();
+            player.setId((int)newId);
             return true;
         }
         db.close();
@@ -89,6 +89,7 @@ public class DAOPlayer extends DAO<Player> {
         Cursor c = db.query("Player", new String[]{"IdPlayer", "PseudoPlayer", "RacePlayer", "LevelPlayer", "StrongPlayer", "PerceptionPlayer", "EndurancePlayer", "CharismaPlayer", "IntelligencePlayer", "AgilityPlayer", "LuckPlayer", "ExpCurrPlayer","HpCurrPlayer","PaCurrPlayer"}, "IdPlayer=?", new String[]{String.valueOf(id)}, null, null, null);
         c.moveToFirst();
         Player player = new Player(c.getInt(0),c.getString(1),c.getString(2),c.getInt(3),c.getInt(4),c.getInt(5),c.getInt(6),c.getInt(7),c.getInt(8),c.getInt(9),c.getInt(10),c.getInt(11),c.getInt(12),c.getInt(13));
+
         return player;
     }
 

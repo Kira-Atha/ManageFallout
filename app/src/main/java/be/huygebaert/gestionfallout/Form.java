@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -59,25 +60,21 @@ public class Form extends AppCompatActivity {
                 case R.id.tv_race_choosen:
                     String[] races = {"Confrérie de l'Acier", "Goule", "Super mutant", "Mister Handy", "Survivant", "Habitant de l'abri"};
                     alert = new AlertDialog.Builder(Form.this);
-                    alert.setTitle("Race du personnage");
-                    alert.setItems(races, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            String race = races[i];
-                            if (races[i].length() > 4) {
-                                race = races[i].substring(0, 3);
-                            }
-                            tv_race_choosen.setText(race);
-                            player.setRace(race);
-                            if (race.equals("Super mutant".substring(0, 3)) || race.equals("Goule".substring(0, 3)) || race.equals("Mister Handy".substring(0, 3))) {
-                                tv_def_ra_curr.setText("IMMU");
-                            } else {
-                                tv_def_ra_curr.setText(String.valueOf(player.getDef_ra()));
-                            }
+                    alert.setTitle("Origine du personnage");
+                    alert.setItems(races, (dialogInterface, i) -> {
+                        String race = races[i];
+                        if (races[i].length() > 4) {
+                            race = races[i].substring(0, 3);
+                        }
+                        tv_race_choosen.setText(race);
+                        player.setRace(race);
+                        if (race.equals("Super mutant".substring(0, 3)) || race.equals("Goule".substring(0, 3)) || race.equals("Mister Handy".substring(0, 3))) {
+                            tv_def_ra_curr.setText("IMMU");
+                        } else {
+                            tv_def_ra_curr.setText(String.valueOf(player.getDef_ra()));
                         }
                     });
                     alert.show();
-                    //send to db
                     break;
                 case R.id.button_exp_add:
                     EditText add_exp = new EditText(Form.this);
@@ -181,7 +178,7 @@ public class Form extends AppCompatActivity {
                     break;
                 case R.id.button_pa_reset:
                     tv_pa_curr.setText(new StringBuilder().append(defaultPa).append("/").append(maxPa).toString());
-                    player.setPa(defaultPa);
+                    player.setPaCurr(defaultPa);
                     break;
                 case R.id.button_dice_6:
                     totalDice = new EditText(Form.this);
@@ -255,6 +252,24 @@ public class Form extends AppCompatActivity {
 
         if((Player)this.getIntent().getSerializableExtra("player") == null){
             player = new Player();
+            Button button_save = new Button(Form.this);
+            button_save.setText(R.string.button_save);
+            LinearLayout layout_buttons_navigables = findViewById(R.id.layout_button_pannel);
+            layout_buttons_navigables.addView(button_save);
+
+            button_save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!player.getPseudo().equals("choisir") && !player.getRace().equals("choisir")){
+                        System.out.println("CREATE");
+                        if(player.create()){
+                            et_pseudo.setEnabled(false);
+                            tv_race_choosen.setEnabled(false);
+                            button_save.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                }
+            });
         }else{
             player = (Player)this.getIntent().getSerializableExtra("player");
         }
@@ -276,8 +291,6 @@ public class Form extends AppCompatActivity {
                     Toast.makeText(getApplication().getBaseContext(),R.string.pseudoTooLong,Toast.LENGTH_LONG).show();
                 }
                 player.setPseudo(et_pseudo.getText().toString());
-                player.create();
-
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -289,6 +302,10 @@ public class Form extends AppCompatActivity {
         tv_race_choosen = findViewById(R.id.tv_race_choosen);
         tv_race_choosen.setOnClickListener(onClickListener);
         tv_race_choosen.setText(player.getRace());
+        if(!player.getRace().equals("choisir") && !player.getPseudo().equals("choisir")){
+            tv_race_choosen.setEnabled(false);
+            et_pseudo.setEnabled(false);
+        }
 
         //level-xp
         tv_level_curr = findViewById(R.id.tv_level_curr);
