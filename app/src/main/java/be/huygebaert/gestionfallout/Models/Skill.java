@@ -10,7 +10,6 @@ public class Skill implements Serializable {
     private int id;
     private String name;
     private int level;
-    private int maxLevel = 6;
     private boolean personalAsset;
     private static DAOSkill daoSkill = new DAOSkill(Fallout.getAppContext());
 
@@ -40,18 +39,14 @@ public class Skill implements Serializable {
     }
 
     public Skill(){ }
-    public Skill(int id,String name, int level,int personalAsset){
+    public Skill(int id,String name, int level,boolean personalAsset){
         this.id = id;
         this.name = name;
         this.level = level;
-        if(personalAsset == 0){
-            this.personalAsset = false;
-        }else{
-            this.personalAsset = true;
-        }
+        this.personalAsset = personalAsset;
     }
 
-    public void levelUpSkill(){
+    public void levelUpSkill(int maxLevel){
         if(this.getLevel() < maxLevel){
             setLevel(this.getLevel()+1);
         }

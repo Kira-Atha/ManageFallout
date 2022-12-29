@@ -43,4 +43,6 @@
     <string name="new_sheet">Nouvelle fiche</string>
     <string name="title_sheet">Choisir personnage</string>
     <string name="button_save">Créer</string>
+    <string name="problemPersonalAsset">Impossible de choisir cet atout personnel : niveau de la compétence supérieur à 3 et le niveau du joueur est inférieur à 3 !</string>
+    <string name="cantCreate">Veuillez choisir un pseudo et une origine !</string>
 </resources>

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import be.huygebaert.gestionfallout.Models.Player;
@@ -17,32 +18,23 @@ public class ChooseCharacter extends AppCompatActivity {
     private Intent intent;
     private Player playerChoosen;
     private int idPlayer;
-    private List<Player> allPlayers;
+    public List<Player> allPlayers;
 
-    View.OnClickListener clickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
 
-            switch(view.getId()){
-                case R.id.button_new_sheet:
-                    intent = new Intent(ChooseCharacter.this,Form.class);
-                    startActivity(intent);
-                    break;
-                default :
-                    intent = new Intent(ChooseCharacter.this, Form.class);
-                    playerChoosen = Player.find(idPlayer);
-                    intent.putExtra("player",playerChoosen);
-                    startActivity(intent);
-                    break;
-            }
-        }
-    };
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_character);
+        setChooseCharacterLayout();
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        reloadActivity();
+    }
+
+    public void setChooseCharacterLayout(){
         allPlayers = Player.findAll();
         Button[] buttonsCharacters = new Button[allPlayers.size()];
         LinearLayout layout_in_scroll = findViewById(R.id.layout_choose_sheet);
@@ -50,11 +42,31 @@ public class ChooseCharacter extends AppCompatActivity {
             String pseudo = allPlayers.get(i).getPseudo();
             buttonsCharacters[i] = new Button(ChooseCharacter.this);
             buttonsCharacters[i].setText(pseudo);
-            idPlayer = allPlayers.get(i).getId();
-            buttonsCharacters[i].setOnClickListener(clickListener);
+            buttonsCharacters[i].setId(allPlayers.get(i).getId());
             layout_in_scroll.addView(buttonsCharacters[i]);
+            buttonsCharacters[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    idPlayer = view.getId();
+                    intent = new Intent(ChooseCharacter.this, Form.class);
+                    playerChoosen = Player.find(idPlayer);
+                    intent.putExtra("player",playerChoosen);
+                    startActivity(intent);
+                }
+            });
         }
         Button button_new_sheet = findViewById(R.id.button_new_sheet);
-        button_new_sheet.setOnClickListener(clickListener);
+        button_new_sheet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(ChooseCharacter.this,Form.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void reloadActivity(){
+        intent = new Intent(ChooseCharacter.this,ChooseCharacter.class);
+        startActivity(intent);
     }
 }

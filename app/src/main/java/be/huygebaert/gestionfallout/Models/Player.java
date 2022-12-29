@@ -28,11 +28,11 @@ public class Player implements Serializable {
     private int hpMax;
     private int hpCurr;
     private int paCurr;
-
     private int maxExp=0;
     private int def = 1;
     private int maxAsset = 3;
     private List<Skill> playerSkills;
+    private Bag playerBag;
     private static DAOPlayer daoPlayer = new DAOPlayer(Fallout.getAppContext());
     private static DAOSkill daoSkill = new DAOSkill(Fallout.getAppContext());
 
@@ -43,7 +43,9 @@ public class Player implements Serializable {
         this.initiative = getInitiative();
         this.hpCurr = hpMax;
         playerSkills = Skill.findAll();
+        this.playerBag = new Bag();
     }
+
     public Player(int id,String pseudo, String race, int level, int strong, int perception, int endurance,int charisma, int intelligence, int agility, int luck,int expCurr,int hpCurr,int paCurr){
         this.id = id;
         this.pseudo = pseudo;
@@ -61,14 +63,12 @@ public class Player implements Serializable {
 
         if(findPlayerSkills().size()>0){
             playerSkills = findPlayerSkills();
-        }else{
-            System.out.println("Pas de skill pour ce joueur en db");
-            playerSkills = Skill.findAll();
         }
         this.hpMax = getHpMax();
         this.initiative = getInitiative();
         this.hpCurr = hpCurr;
         this.paCurr = paCurr;
+        this.playerBag = new Bag();
     }
 
     public String getPseudo() {
@@ -290,10 +290,18 @@ public class Player implements Serializable {
 
     public boolean choosePersonalAsset(Skill skill){
         if(this.getCurrentPersonalAsset() < maxAsset ){
-            this.makePersonalAsset(skill);
-            //System.out.println("C'est possible");
-            daoSkill.update(skill);
-            return true;
+            if(this.makePersonalAsset(skill)){
+                return daoSkill.updatePlayerSkill(this);
+            }
+        }
+        return false;
+    }
+
+    public boolean unchoosePersonalAsset(Skill skill){
+        if(this.getCurrentPersonalAsset() < maxAsset ){
+            this.getPlayerSkills().get(skill.getId()-1).setPersonalAsset(false);
+            this.getPlayerSkills().get(skill.getId()-1).setLevel(getPlayerSkills().get(skill.getId()-1).getLevel()-2);
+            return daoSkill.updatePlayerSkill(this);
         }
         return false;
     }
@@ -308,8 +316,14 @@ public class Player implements Serializable {
         //System.out.println(countPersonalAsset);
         return countPersonalAsset;
     }
-    public void makePersonalAsset(Skill skill){
+    public boolean makePersonalAsset(Skill skill){
+        if(skill.getLevel() +2 > 3){
+            return false;
+        }
         this.getPlayerSkills().get(skill.getId()-1).setPersonalAsset(true);
+        this.getPlayerSkills().get(skill.getId()-1).levelUpSkill(6);
+        this.getPlayerSkills().get(skill.getId()-1).levelUpSkill(6);
+        return true;
         //skill.update();
     }
     public int[] getDice20Results(int[] launchesDice,int num_skill, int num_SPECIAL,int complication){
@@ -330,9 +344,6 @@ public class Player implements Serializable {
                 }
             }
         }
-        if(playerSkills.get(num_skill).isPersonalAsset() && count_success>0 || playerSkills.get(num_skill).isPersonalAsset() && count_critical>0 ){
-            count_failure=0;
-        }
 
         results[0] = count_critical;
         results[1] = count_success;
@@ -343,7 +354,10 @@ public class Player implements Serializable {
         System.out.println("Réussite = "+count_success);
 
         if(playerSkills.get(num_skill).isPersonalAsset()){
-            count_critical = count_critical * 2;
+            results[0] += results[1];
+            results[1] =0;
+            results[2] = 0;
+            count_critical *= 2;
         }
         this.receivePA(count_critical);
         return results;
@@ -356,7 +370,10 @@ public class Player implements Serializable {
 
     public int getStock_skill_points(){
         //Ne pas oublier les points générés par les abilités lorsque ça sera implémanté
-        return (this.getLevel()+3)-1;
+        int totalStock = 0;
+        totalStock += this.getLevel()+2;
+        totalStock += 9 + this.getIntelligence();
+        return totalStock;
     }
 
     public boolean useStock_skill_points(Skill skill){
@@ -365,42 +382,60 @@ public class Player implements Serializable {
         int total_point = getStock_skill_points();
         //System.out.println(total_point);
         if(total_point>used_point){
-            this.playerSkills.get(skill.getId()-1).levelUpSkill();
+            if(this.getLevel() >=3){
+                this.playerSkills.get(skill.getId()-1).levelUpSkill(6);
+            }else{
+                this.playerSkills.get(skill.getId()-1).levelUpSkill(3);
+            }
             //System.out.println("L'id du skill " +skill.getName()+" est : "+String.valueOf(skill.getId()));
-            return true;
+            return daoSkill.updatePlayerSkill(this);
         }
         return false;
     }
 
-     public int getUsed_stock_skill_points(){
+    public int getUsed_stock_skill_points(){
         int total_used=0;
         for(Skill sk : this.getPlayerSkills()){
+            if(sk.isPersonalAsset()){
+                total_used-=2;
+            }
             total_used+=sk.getLevel();
         }
         return total_used;
     }
 
+    public Bag getPlayerBag(){
+        return this.playerBag;
+    }
+    public long getMaxWeightBag(){
+        return (this.getStrong() * 5) + 75;
+    }
+    public long getCurrentWeightBag(){
+        long currentWeight = 0;
+        for(Item item : this.playerBag.getItems()){
+            currentWeight += item.getWeight();
+        }
+        return currentWeight;
+    }
+
     public boolean create(){
         boolean success = daoPlayer.create(this);
         daoSkill.createPlayerSkills(this);
+        daoSkill.updatePlayerSkill(this);
         return success;
     }
-
     public boolean update(){
         return daoPlayer.update(this);
     }
     public boolean delete( ){
         return daoPlayer.delete(this);
     }
-
     public static Player find(int id){
         return daoPlayer.find(id);
     }
-
     public static List<Player> findAll(){
         return daoPlayer.findAll();
     }
-
     private List<Skill> findPlayerSkills(){
         return daoSkill.findPlayerSkills(this);
     }

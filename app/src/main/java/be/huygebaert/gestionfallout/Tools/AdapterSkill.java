@@ -2,6 +2,7 @@ package be.huygebaert.gestionfallout.Tools;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +15,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import be.huygebaert.gestionfallout.Models.Player;
 import be.huygebaert.gestionfallout.Models.Skill;
@@ -34,6 +40,15 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
         try {
             this.activity = activity;
             this.allSkills = player.getPlayerSkills();
+
+            Collections.sort(allSkills,new Comparator<Skill>(){
+                public int compare(Skill s1, Skill s2){
+                    Integer n1 = Integer.valueOf(s1.getLevel());
+                    Integer n2  = Integer.valueOf(s2.getLevel());
+                    return n2.compareTo(n1);
+                }
+            });
+
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             this.player = player;
         } catch (Exception e) {
@@ -54,8 +69,9 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
         public CheckBox box_personalAsset;
         public TextView add_skill;
     }
-
-    public View getView(int position, View convertView, ViewGroup parent) {
+//TODO : Régler problème de check box...
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public View getView(final int position, View convertView, ViewGroup parent) {
         vi = convertView;
 
         try {
@@ -76,9 +92,9 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
             }
             Skill skillChosen = allSkills.get(position);
 
+
             holder.tv_skill_name.setText(allSkills.get(position).getName());
             holder.tv_skill_level.setText(String.valueOf(allSkills.get(position).getLevel()));
-
             holder.box_personalAsset.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                     if(isChecked){
@@ -87,7 +103,12 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
                             show_checkbox();
                         }else{
                             holder.box_personalAsset.setChecked(false);
+                            Toast.makeText(Fallout.getAppContext(),R.string.problemPersonalAsset,Toast.LENGTH_LONG).show();
                         }
+                    }else{
+                        player.unchoosePersonalAsset(skillChosen);
+                        notifyDataSetChanged();
+                        show_checkbox();
                     }
                 }
             });

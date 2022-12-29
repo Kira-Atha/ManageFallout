@@ -2,6 +2,7 @@ package be.huygebaert.gestionfallout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -39,6 +40,73 @@ public class Form extends AppCompatActivity {
     private TextView tv_def_curr,tv_pa_curr,tv_exp_curr, tv_level_curr, tv_race_choosen, tv_def_ra_curr, tv_strong, tv_perception, tv_endurance, tv_charisma, tv_intelligence, tv_agility, tv_luck,tv_hp_curr;
     private AlertDialog.Builder alert;
     private final int maxPa = 6,defaultPa =2;
+
+
+    View.OnClickListener listenerSPECIAL = new View.OnClickListener(){
+        @Override
+        public void onClick(View view) {
+            switch(view.getId()){
+                case R.id.button_for_add:
+
+                    //
+                    break;
+                case R.id.button_per_add:
+
+                    //
+                    break;
+
+                case R.id.button_end_add:
+
+                    //
+                    break;
+                case R.id.button_chr_add:
+
+                    //
+                    break;
+                case R.id.button_int_add:
+
+                    //
+                    break;
+                case R.id.button_agi_add:
+
+                    //
+                    break;
+                case R.id.button_cha_add:
+
+                    //
+                    break;
+                case R.id.button_for_minus:
+
+                    //
+                    break;
+                case R.id.button_per_minus:
+
+                    //
+                    break;
+
+                case R.id.button_end_minus:
+
+                    //
+                    break;
+                case R.id.button_chr_minus:
+
+                    //
+                    break;
+                case R.id.button_int_minus:
+
+                    //
+                    break;
+                case R.id.button_agi_minus:
+
+                    //
+                    break;
+                case R.id.button_cha_minus:
+
+                    //
+                    break;
+            }
+        }
+    };
 
     //anonymous
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -90,7 +158,7 @@ public class Form extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             String exp_value = add_exp.getText().toString();
                             player.earnExp(Integer.parseInt(exp_value));
-                            reloadFormActivity();
+                            reloadActivity();
                             /*
                             tv_exp_curr.setText(new StringBuilder().append(player.getExp()).append("/").append(player.getMaxExp()).toString());
                             tv_level_curr.setText(String.valueOf(player.getLevel()));
@@ -261,12 +329,14 @@ public class Form extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(!player.getPseudo().equals("choisir") && !player.getRace().equals("choisir")){
-                        System.out.println("CREATE");
+
                         if(player.create()){
                             et_pseudo.setEnabled(false);
                             tv_race_choosen.setEnabled(false);
                             button_save.setVisibility(View.INVISIBLE);
                         }
+                    }else{
+                        Toast.makeText(getApplication().getBaseContext(),R.string.cantCreate,Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -391,11 +461,43 @@ public class Form extends AppCompatActivity {
         button_dice_6.setOnClickListener(onClickListener);
         Button button_dice_20 = findViewById(R.id.button_dice_20);
         button_dice_20.setOnClickListener(onClickListener);
+
+//SPECIAL
+        Button button_button_for_add = findViewById(R.id.button_for_add);
+        button_button_for_add.setOnClickListener(listenerSPECIAL);
+        Button button_button_per_add = findViewById(R.id.button_per_add);
+        button_button_per_add.setOnClickListener(listenerSPECIAL);
+        Button button_button_end_add = findViewById(R.id.button_end_add);
+        button_button_end_add.setOnClickListener(listenerSPECIAL);
+        Button button_button_chr_add = findViewById(R.id.button_chr_add);
+        button_button_chr_add.setOnClickListener(listenerSPECIAL);
+        Button button_button_int_add = findViewById(R.id.button_int_add);
+        button_button_int_add.setOnClickListener(listenerSPECIAL);
+        Button button_button_agi_add = findViewById(R.id.button_agi_add);
+        button_button_agi_add.setOnClickListener(listenerSPECIAL);
+        Button button_button_cha_add = findViewById(R.id.button_cha_add);
+        button_button_cha_add.setOnClickListener(listenerSPECIAL);
+
+        Button button_button_for_minus = findViewById(R.id.button_for_minus);
+        button_button_for_minus.setOnClickListener(listenerSPECIAL);
+        Button button_button_per_minus = findViewById(R.id.button_per_minus);
+        button_button_per_minus.setOnClickListener(listenerSPECIAL);
+        Button button_button_end_minus = findViewById(R.id.button_end_minus);
+        button_button_end_minus.setOnClickListener(listenerSPECIAL);
+        Button button_button_chr_minus = findViewById(R.id.button_chr_minus);
+        button_button_chr_minus.setOnClickListener(listenerSPECIAL);
+        Button button_button_int_minus = findViewById(R.id.button_int_minus);
+        button_button_int_minus.setOnClickListener(listenerSPECIAL);
+        Button button_button_agi_minus = findViewById(R.id.button_agi_minus);
+        button_button_agi_minus.setOnClickListener(listenerSPECIAL);
+        Button button_button_cha_minus = findViewById(R.id.button_cha_minus);
+        button_button_cha_minus.setOnClickListener(listenerSPECIAL);
     }
 
-    public void reloadFormActivity(){
+    public void reloadActivity(){
         intent = new Intent(Form.this,Form.class);
         intent.putExtra("player",player);
         startActivity(intent);
+        this.finish();
     }
 }
