@@ -38,7 +38,13 @@ public class DAOSkill extends DAO<Skill> {
 
     @Override
     public Skill find(int id) {
-        return null;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor c = db.query("Skill", new String[]{"IdSkill", "NameSkill"}, "IdSkill=?", new String[]{String.valueOf(id)}, null, null, null);
+        c.moveToFirst();
+        Skill skill = new Skill(c.getInt(0),c.getString(1),0,false);
+
+        return skill;
     }
 
     @Override

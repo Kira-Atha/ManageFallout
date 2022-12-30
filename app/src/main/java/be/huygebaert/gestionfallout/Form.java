@@ -1,5 +1,6 @@
 package be.huygebaert.gestionfallout;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -7,10 +8,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,72 +44,6 @@ public class Form extends AppCompatActivity {
     private AlertDialog.Builder alert;
     private final int maxPa = 6,defaultPa =2;
 
-
-    View.OnClickListener listenerSPECIAL = new View.OnClickListener(){
-        @Override
-        public void onClick(View view) {
-            switch(view.getId()){
-                case R.id.button_for_add:
-
-                    //
-                    break;
-                case R.id.button_per_add:
-
-                    //
-                    break;
-
-                case R.id.button_end_add:
-
-                    //
-                    break;
-                case R.id.button_chr_add:
-
-                    //
-                    break;
-                case R.id.button_int_add:
-
-                    //
-                    break;
-                case R.id.button_agi_add:
-
-                    //
-                    break;
-                case R.id.button_cha_add:
-
-                    //
-                    break;
-                case R.id.button_for_minus:
-
-                    //
-                    break;
-                case R.id.button_per_minus:
-
-                    //
-                    break;
-
-                case R.id.button_end_minus:
-
-                    //
-                    break;
-                case R.id.button_chr_minus:
-
-                    //
-                    break;
-                case R.id.button_int_minus:
-
-                    //
-                    break;
-                case R.id.button_agi_minus:
-
-                    //
-                    break;
-                case R.id.button_cha_minus:
-
-                    //
-                    break;
-            }
-        }
-    };
 
     //anonymous
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -308,6 +245,7 @@ public class Form extends AppCompatActivity {
                     intent = new Intent(Form.this, Dice20.class);
                     intent.putExtra("player",player);
                     startActivity(intent);
+                    Form.this.finish();
                     break;
             }
         }
@@ -329,7 +267,6 @@ public class Form extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(!player.getPseudo().equals("choisir") && !player.getRace().equals("choisir")){
-
                         if(player.create()){
                             et_pseudo.setEnabled(false);
                             tv_race_choosen.setEnabled(false);
@@ -456,42 +393,83 @@ public class Form extends AppCompatActivity {
         AdapterSkill adapter = new AdapterSkill(Form.this,0,player);
 
         list_skills.setAdapter(adapter);
-        //dices
+//dices
         Button button_dice_6 = findViewById(R.id.button_dice_6);
         button_dice_6.setOnClickListener(onClickListener);
         Button button_dice_20 = findViewById(R.id.button_dice_20);
         button_dice_20.setOnClickListener(onClickListener);
 
 //SPECIAL
-        Button button_button_for_add = findViewById(R.id.button_for_add);
-        button_button_for_add.setOnClickListener(listenerSPECIAL);
-        Button button_button_per_add = findViewById(R.id.button_per_add);
-        button_button_per_add.setOnClickListener(listenerSPECIAL);
-        Button button_button_end_add = findViewById(R.id.button_end_add);
-        button_button_end_add.setOnClickListener(listenerSPECIAL);
-        Button button_button_chr_add = findViewById(R.id.button_chr_add);
-        button_button_chr_add.setOnClickListener(listenerSPECIAL);
-        Button button_button_int_add = findViewById(R.id.button_int_add);
-        button_button_int_add.setOnClickListener(listenerSPECIAL);
-        Button button_button_agi_add = findViewById(R.id.button_agi_add);
-        button_button_agi_add.setOnClickListener(listenerSPECIAL);
-        Button button_button_cha_add = findViewById(R.id.button_cha_add);
-        button_button_cha_add.setOnClickListener(listenerSPECIAL);
+        LinearLayout layoutAdd = findViewById(R.id.layout_SPECIAL_add);
+        layoutAdd.setGravity(Gravity.CENTER);
+        LinearLayout layoutMinus = findViewById(R.id.layout_SPECIAL_minus);
+        layoutMinus.setGravity(Gravity.CENTER);
+        LinearLayout layoutParams = new LinearLayout(Form.this);
+        LinearLayout layoutForm = findViewById(R.id.layout_form);
+        LinearLayout layoutSpecial = findViewById(R.id.layout_SPECIAL);
+        TextView specialRemaining = new TextView(Form.this);
+        specialRemaining.setText(new StringBuilder().append(player.getTotalSpecial()).append("/40").toString());
+        layoutSpecial.addView(specialRemaining);
+        layoutForm.addView(layoutParams);
 
-        Button button_button_for_minus = findViewById(R.id.button_for_minus);
-        button_button_for_minus.setOnClickListener(listenerSPECIAL);
-        Button button_button_per_minus = findViewById(R.id.button_per_minus);
-        button_button_per_minus.setOnClickListener(listenerSPECIAL);
-        Button button_button_end_minus = findViewById(R.id.button_end_minus);
-        button_button_end_minus.setOnClickListener(listenerSPECIAL);
-        Button button_button_chr_minus = findViewById(R.id.button_chr_minus);
-        button_button_chr_minus.setOnClickListener(listenerSPECIAL);
-        Button button_button_int_minus = findViewById(R.id.button_int_minus);
-        button_button_int_minus.setOnClickListener(listenerSPECIAL);
-        Button button_button_agi_minus = findViewById(R.id.button_agi_minus);
-        button_button_agi_minus.setOnClickListener(listenerSPECIAL);
-        Button button_button_cha_minus = findViewById(R.id.button_cha_minus);
-        button_button_cha_minus.setOnClickListener(listenerSPECIAL);
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) layoutParams.getLayoutParams();
+        params.width = 30;
+        params.rightMargin = 130;
+
+        if(player.getTotalSpecial()!=40) {
+            for (int i = 0; i < 7; i++) {
+                TextView butt_add = new TextView(Form.this);
+                butt_add.setText("+");
+                butt_add.setId(i);
+                butt_add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!player.updateSPECIALTab(butt_add.getId(), "add")) {
+                            Toast.makeText(getApplication().getBaseContext(), R.string.problemSPECIAL, Toast.LENGTH_LONG).show();
+                        } else {
+                            reloadActivity();
+                        }
+                    }
+                });
+                butt_add.setLayoutParams(params);
+                layoutAdd.addView(butt_add);
+                if(player.getSPECIALTab()[i]==10){
+                    butt_add.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            for (int i = 0; i < 7; i++) {
+                TextView butt_minus = new TextView(Form.this);
+                butt_minus.setText("-");
+                butt_minus.setId(i);
+                butt_minus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!player.updateSPECIALTab(butt_minus.getId(), "minus")) {
+                            Toast.makeText(getApplication().getBaseContext(), R.string.problemSPECIAL, Toast.LENGTH_LONG).show();
+                        } else {
+                            reloadActivity();
+                        }
+                    }
+                });
+                butt_minus.setLayoutParams(params);
+                layoutMinus.addView(butt_minus);
+                if(player.getSPECIALTab()[i]==4){
+                    butt_minus.setVisibility(View.INVISIBLE);
+                }
+            }
+        }
+    //PersonalAsset
+        LinearLayout layout_personal_asset = findViewById(R.id.layout_personal_asset);
+
+        int count=1;
+        for(int i=0;i<player.getPlayerSkills().size();i++){
+            if(player.getPlayerSkills().get(i).isPersonalAsset()){
+                TextView myAsset = new TextView(Form.this);
+                myAsset.setText(new StringBuilder().append("Atout personnel ").append(count++).append(" : ").append(player.getPlayerSkills().get(i).getName()).toString());
+                layout_personal_asset.addView(myAsset);
+            }
+        }
     }
 
     public void reloadActivity(){

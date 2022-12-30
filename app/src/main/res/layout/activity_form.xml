@@ -177,151 +177,23 @@
                 android:id="@+id/tv_luck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_luck" />
+                android:text="@string/tv_luck"
+                android:layout_marginRight="15dp"
+                />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_SPECIAL_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button_for_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="+" />
-
-            <Button
-                android:id="@+id/button_per_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="+" />
-
-            <Button
-                android:id="@+id/button_end_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="+" />
-
-            <Button
-                android:id="@+id/button_chr_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="+" />
-
-            <Button
-                android:id="@+id/button_int_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="+" />
-
-            <Button
-                android:id="@+id/button_agi_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="+" />
-
-            <Button
-                android:id="@+id/button_cha_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="+" />
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
         <LinearLayout
             android:id="@+id/layout_SPECIAL_minus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button_for_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="12dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="-" />
-
-            <Button
-                android:id="@+id/button_per_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="13dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="-" />
-
-            <Button
-                android:id="@+id/button_end_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="14dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="-" />
-
-            <Button
-                android:id="@+id/button_chr_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="-" />
-
-            <Button
-                android:id="@+id/button_int_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="-" />
-
-            <Button
-                android:id="@+id/button_agi_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="12dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="-" />
-
-            <Button
-                android:id="@+id/button_cha_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="-" />
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -509,6 +381,15 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <LinearLayout
+            android:id="@+id/layout_personal_asset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|bottom"
+            android:orientation="vertical"
+            >
+
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/layout_dice"
             android:layout_width="wrap_content"

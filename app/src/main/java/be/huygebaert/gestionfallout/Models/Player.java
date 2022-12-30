@@ -1,7 +1,12 @@
 package be.huygebaert.gestionfallout.Models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -368,6 +373,45 @@ public class Player implements Serializable {
         return SPECIAL;
     }
 
+    public int getTotalSpecial(){
+        int[] SPECIAL  = getSPECIALTab();
+        int totalSPECIAL = 0;
+
+        for(int i=0;i<SPECIAL.length;i++){
+            totalSPECIAL+=SPECIAL[i];
+        }
+        return totalSPECIAL;
+    }
+    public boolean updateSPECIALTab(int position,String operator){
+        switch(operator){
+            case "minus":
+                System.out.println("MINUS UPDATESPECIALTAB");
+                return testUpdateSPECIAL(position,getSPECIALTab(),getTotalSpecial(),-1);
+            case "add":
+                System.out.println("ADD UPDATESPECIALTAB");
+                return testUpdateSPECIAL(position,getSPECIALTab(),getTotalSpecial(),1);
+        }
+        return false;
+    }
+
+    private boolean testUpdateSPECIAL(int position, int[] SPECIAL, int totalSPECIAL,int value){
+        if(totalSPECIAL + value > 40){
+            return false;
+        }else if(SPECIAL[position]+ value <4){
+            return false;
+        }else if(SPECIAL[position] + value >10){
+            return false;
+        }
+        SPECIAL[position]+=value;
+        setStrong(SPECIAL[0]);
+        setPerception(SPECIAL[1]);
+        setEndurance(SPECIAL[2]);
+        setCharisma(SPECIAL[3]);
+        setIntelligence(SPECIAL[4]);
+        setAgility(SPECIAL[5]);
+        setLuck(SPECIAL[6]);
+        return update();
+    }
     public int getStock_skill_points(){
         //Ne pas oublier les points générés par les abilités lorsque ça sera implémanté
         int totalStock = 0;

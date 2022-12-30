@@ -1,8 +1,11 @@
 package be.huygebaert.gestionfallout.Tools;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +27,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import be.huygebaert.gestionfallout.Dice20;
+import be.huygebaert.gestionfallout.Form;
 import be.huygebaert.gestionfallout.Models.Player;
 import be.huygebaert.gestionfallout.Models.Skill;
 import be.huygebaert.gestionfallout.R;
@@ -69,8 +75,7 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
         public CheckBox box_personalAsset;
         public TextView add_skill;
     }
-//TODO : Régler problème de check box...
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     public View getView(final int position, View convertView, ViewGroup parent) {
         vi = convertView;
 
@@ -82,9 +87,6 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
                 holder.tv_skill_name = (TextView) vi.findViewById(R.id.tv_skill_name);
                 holder.tv_skill_level = (TextView) vi.findViewById(R.id.tv_skill_level);
                 holder.box_personalAsset = (CheckBox) vi.findViewById(R.id.box_personalAsset);
-                if(allSkills.get(position).isPersonalAsset()){
-                    holder.box_personalAsset.setChecked(true);
-                }
                 holder.add_skill = (TextView) vi.findViewById(R.id.add_skill);
                 vi.setTag(holder);
             } else {
@@ -94,6 +96,16 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
 
 
             holder.tv_skill_name.setText(allSkills.get(position).getName());
+            holder.tv_skill_name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Fallout.getAppContext(), Dice20.class);
+                    intent.putExtra("player",player);
+                    intent.putExtra("num_skill",skillChosen.getId());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Fallout.getAppContext().startActivity(intent);
+                }
+            });
             holder.tv_skill_level.setText(String.valueOf(allSkills.get(position).getLevel()));
             holder.box_personalAsset.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
@@ -140,7 +152,7 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
     public void show_checkbox(){
         if(player.getCurrentPersonalAsset()==player.getMaxAsset()){
             //System.out.println("Check box invisible");
-            holder.box_personalAsset.setEnabled(false);
+            holder.box_personalAsset.setVisibility(View.INVISIBLE);
         }
     }
 }

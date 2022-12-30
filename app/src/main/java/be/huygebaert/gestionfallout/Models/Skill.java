@@ -56,4 +56,7 @@ public class Skill implements Serializable {
     public static ArrayList<Skill> findAll(){
         return daoSkill.findAll();
     }
+    public static Skill find(int id){
+        return daoSkill.find(id);
+    }
 }

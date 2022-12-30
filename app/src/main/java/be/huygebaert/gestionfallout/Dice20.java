@@ -27,7 +27,7 @@ public class Dice20 extends AppCompatActivity {
     private Intent intent;
     private EditText totalDice;
     private String skill_name,SPECIAL_name;
-    private int num_skill, num_SPECIAL, num_complication;
+    private int num_skill=-1, num_SPECIAL, num_complication;
     private Spinner sp_SPECIALChoice, sp_skillChoice,sp_complication;
     private Player player;
     private AlertDialog.Builder alert;
@@ -38,12 +38,57 @@ public class Dice20 extends AppCompatActivity {
             int numberOfDice = Integer.parseInt(totalDice.getText().toString());
             int[] launchesDice = Player.launchDice(numberOfDice, 1, 21);
        //name
-            skill_name = sp_skillChoice.getSelectedItem().toString();
-            SPECIAL_name = sp_SPECIALChoice.getSelectedItem().toString();
+            if(num_skill==-1){
+                skill_name = sp_skillChoice.getSelectedItem().toString();
+                SPECIAL_name = sp_SPECIALChoice.getSelectedItem().toString();
 
-        //position
-            num_skill = sp_skillChoice.getSelectedItemPosition();
-            num_SPECIAL = sp_SPECIALChoice.getSelectedItemPosition();
+                //position
+                num_skill = sp_skillChoice.getSelectedItemPosition();
+                num_SPECIAL = sp_SPECIALChoice.getSelectedItemPosition();
+            }else{
+                skill_name = Skill.find(num_skill).getName();
+
+                switch(num_skill) {
+                    case 2:
+                    case 5:
+                    case 10:
+                        SPECIAL_name = "Force";
+                        num_SPECIAL=1;
+                        break;
+                    case 1:
+                    case 6:
+                    case 9:
+                    case 12:
+                        SPECIAL_name = "Perception";
+                        num_SPECIAL=2;
+                        break;
+                    case 4:
+                    case 16:
+                        SPECIAL_name = "Endurance";
+                        num_SPECIAL=3;
+                        break;
+                    case 7 :
+                    case 17:
+                        SPECIAL_name = "Charisme";
+                        num_SPECIAL=4;
+                        break;
+                    case 11:
+                    case 14:
+                    case 15:
+                        SPECIAL_name = "Intelligence";
+                        num_SPECIAL=5;
+                        break;
+                    case 3:
+                    case 8:
+                    case 13:
+                        SPECIAL_name = "Agilité";
+                        num_SPECIAL=6;
+                        break;
+                }
+                // Search on list 0->16
+                num_SPECIAL-=1;
+                num_skill-=1;
+            }
             num_complication = sp_complication.getSelectedItemPosition();
 
             System.out.println(num_skill+" "+skill_name);
@@ -98,6 +143,7 @@ public class Dice20 extends AppCompatActivity {
                     intent = new Intent(Dice20.this,Form.class);
                     intent.putExtra("player",player);
                     startActivity(intent);
+                    Dice20.this.finish();
                 }
             });
             alert.show();
@@ -112,48 +158,57 @@ public class Dice20 extends AppCompatActivity {
         totalDice = new EditText(Dice20.this);
         totalDice.setText("1");
         totalDice.setInputType(InputType.TYPE_CLASS_NUMBER);
+        LinearLayout manyViewLayout = new LinearLayout(Dice20.this);
+        manyViewLayout.setOrientation(LinearLayout.VERTICAL);
 
-        String[] specials = {"Force","Perception","Endurance","Charisme","Intelligence","Agilité","Chance"};
-        sp_SPECIALChoice = new Spinner(Dice20.this);
-        final ArrayAdapter<String> adapterSpecials = new ArrayAdapter<String>(Dice20.this, android.R.layout.simple_spinner_item, specials);
-        sp_SPECIALChoice.setAdapter(adapterSpecials);
+        if(this.getIntent().getSerializableExtra("num_skill")==null){
+            String[] specials = {"Force","Perception","Endurance","Charisme","Intelligence","Agilité","Chance"};
+            sp_SPECIALChoice = new Spinner(Dice20.this);
+            final ArrayAdapter<String> adapterSpecials = new ArrayAdapter<String>(Dice20.this, android.R.layout.simple_spinner_item, specials);
+            sp_SPECIALChoice.setAdapter(adapterSpecials);
 
-        //TODO get skills from DB
-        List<Skill> skills = Skill.findAll();
-        String[] skills_name = new String[skills.size()];
-        for (int i=0; i<skills.size();i++) {
-            skills_name[i] = skills.get(i).getName();
+            List<Skill> skills = Skill.findAll();
+            String[] skills_name = new String[skills.size()];
+            for (int i=0; i<skills.size();i++) {
+                skills_name[i] = skills.get(i).getName();
+            }
+            sp_skillChoice = new Spinner(Dice20.this);
+            final ArrayAdapter<String> adapterSkills = new ArrayAdapter<String>(Dice20.this, android.R.layout.simple_spinner_item, skills_name);
+            sp_skillChoice.setAdapter(adapterSkills);
+        }else{
+            num_skill = (int) this.getIntent().getSerializableExtra("num_skill");
+            System.out.println("DICE 20 CONTEXT => "+num_skill);
         }
-
-        sp_skillChoice = new Spinner(Dice20.this);
-        final ArrayAdapter<String> adapterSkills = new ArrayAdapter<String>(Dice20.this, android.R.layout.simple_spinner_item, skills_name);
-        sp_skillChoice.setAdapter(adapterSkills);
 
         sp_complication = new Spinner(Dice20.this);
         String[] complicationsLevel={"1","2","3","4","5"};
         final ArrayAdapter<String> adapterComplications = new ArrayAdapter<String>(Dice20.this, android.R.layout.simple_spinner_item, complicationsLevel);
         sp_complication.setAdapter(adapterComplications);
 
-        LinearLayout manyViewLayout = new LinearLayout(Dice20.this);
-        manyViewLayout.setOrientation(LinearLayout.VERTICAL);
-
         TextView tv_dice = new TextView(Dice20.this,null);
         tv_dice.setText(R.string.choice_dice);
-        TextView choice_skill = new TextView(Dice20.this,null);
-        choice_skill.setText(R.string.choice_skill);
-        TextView choice_SPECIAL = new TextView(Dice20.this,null);
-        choice_SPECIAL.setText(R.string.choice_SPECIAL);
-        TextView choice_complication = new TextView(Dice20.this);
+
+        TextView choice_skill = null;
+        TextView choice_complication = null;
+        TextView choice_SPECIAL = null;
+
+        if(this.getIntent().getSerializableExtra("num_skill")==null) {
+            choice_skill = new TextView(Dice20.this,null);
+            choice_skill.setText(R.string.choice_skill);
+            choice_SPECIAL = new TextView(Dice20.this,null);
+            choice_SPECIAL.setText(R.string.choice_SPECIAL);
+            manyViewLayout.addView(choice_skill);
+            manyViewLayout.addView(sp_skillChoice);
+            manyViewLayout.addView(choice_SPECIAL);
+            manyViewLayout.addView(sp_SPECIALChoice);
+        }
+        choice_complication = new TextView(Dice20.this);
         choice_complication.setText(R.string.choice_complication);
         Button button_launch_dice_20 = new Button(Dice20.this,null);
         button_launch_dice_20.setText(R.string.launch);
         button_launch_dice_20.setOnClickListener(onClickListener);
         manyViewLayout.addView(tv_dice);
         manyViewLayout.addView(totalDice);
-        manyViewLayout.addView(choice_skill);
-        manyViewLayout.addView(sp_skillChoice);
-        manyViewLayout.addView(choice_SPECIAL);
-        manyViewLayout.addView(sp_SPECIALChoice);
         manyViewLayout.addView(choice_complication);
         manyViewLayout.addView(sp_complication);
         manyViewLayout.addView(button_launch_dice_20);
