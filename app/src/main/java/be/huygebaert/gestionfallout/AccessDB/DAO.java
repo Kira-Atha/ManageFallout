@@ -63,12 +63,14 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
         //Ajouter tous les skills disponibles !
 
         ContentValues values = new ContentValues();
-        String[] skills_name = {"Armes à énergie[PER]", "Armes de corps à corps[FOR]", "Armes légères[AGI]", "Armes lourdes[END]", "Athlétisme[FOR]", "Crochetage[PER]", "Discours[CHR]", "Discrétion[AGI]", "Explosifs[PER]", "Mains nues[FOR]", "Médecine[INT]", "Pilotage[PER]", "Projectiles[AGI]", "Réparation[INT]", "Sciences[INT]", "Survie[END]", "Troc[CHR]"};
+        String[] skills_name = {"Armes à énergie", "Armes de corps à corps", "Armes légères", "Armes lourdes", "Athlétisme", "Crochetage", "Discours", "Discrétion", "Explosifs", "Mains nues", "Médecine", "Pilotage", "Projectiles", "Réparation", "Sciences", "Survie", "Troc"};
 
         for (String name : skills_name) {
             values.put("NameSkill", name);
             db.insert("Skill", null, values);
         }
+
+
 
     }
 

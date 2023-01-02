@@ -83,7 +83,7 @@ public class DAOSkill extends DAO<Skill> {
             }
             skill = new Skill(c.getInt(0),c.getString(1),c.getInt(2),personalAsset);
             playerSkills.add(skill);
-            System.out.println(c.getString(1));
+            //System.out.println(c.getString(1));
         }
         return playerSkills;
     }
@@ -116,8 +116,8 @@ public class DAOSkill extends DAO<Skill> {
                     values.put("PersonalAssetSkill", 0);
                 }
                 db.update("Player_Skill", values, "IdPlayer=? AND IdSkill=?", new String[]{String.valueOf(player.getId()),String.valueOf(player.getPlayerSkills().get(i).getId())});
-                System.out.println("Update");
-                System.out.println(player.getPlayerSkills().get(i).getLevel());
+                //System.out.println("Update");
+                //System.out.println(player.getPlayerSkills().get(i).getLevel());
             }
         }catch(Exception e){
             e.getMessage();

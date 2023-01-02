@@ -1,10 +1,12 @@
 package be.huygebaert.gestionfallout;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -31,8 +33,10 @@ public class Dice20 extends AppCompatActivity {
     private Spinner sp_SPECIALChoice, sp_skillChoice,sp_complication;
     private Player player;
     private AlertDialog.Builder alert;
+    private List<Skill> skills;
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         public void onClick(View view) {
             int numberOfDice = Integer.parseInt(totalDice.getText().toString());
@@ -91,6 +95,7 @@ public class Dice20 extends AppCompatActivity {
             }
             num_complication = sp_complication.getSelectedItemPosition();
 
+            /*
             System.out.println(num_skill+" "+skill_name);
             System.out.println(num_SPECIAL+ " " +SPECIAL_name);
             System.out.println("Complication level :" + num_complication);
@@ -98,12 +103,21 @@ public class Dice20 extends AppCompatActivity {
             for(int i = 0; i< launchesDice.length; i++){
                 System.out.println(i+ " " + launchesDice[i]);
             }
+
+             */
             int results[]=player.getDice20Results(launchesDice,num_skill,num_SPECIAL,num_complication);
 
             alert = new AlertDialog.Builder(Dice20.this);
             String message="";
 
-            Skill skillChosen = player.getPlayerSkills().get(num_skill);
+            Skill skillChosen = new Skill();
+
+            for(int i = 0;i<player.getPlayerSkills().size();i++){
+                if(player.getPlayerSkills().get(i).equals(skills.get(num_skill))){
+                    skillChosen = player.getPlayerSkills().get(i);
+                    //System.out.println("PAREIL");
+                }
+            }
 
             message+="Vous avez lancé "+numberOfDice+" dé(s) \n";
             message+="Compétence: "+skill_name+"\n";
@@ -161,13 +175,14 @@ public class Dice20 extends AppCompatActivity {
         LinearLayout manyViewLayout = new LinearLayout(Dice20.this);
         manyViewLayout.setOrientation(LinearLayout.VERTICAL);
 
+        skills = Skill.findAll();
+
         if(this.getIntent().getSerializableExtra("num_skill")==null){
             String[] specials = {"Force","Perception","Endurance","Charisme","Intelligence","Agilité","Chance"};
             sp_SPECIALChoice = new Spinner(Dice20.this);
             final ArrayAdapter<String> adapterSpecials = new ArrayAdapter<String>(Dice20.this, android.R.layout.simple_spinner_item, specials);
             sp_SPECIALChoice.setAdapter(adapterSpecials);
 
-            List<Skill> skills = Skill.findAll();
             String[] skills_name = new String[skills.size()];
             for (int i=0; i<skills.size();i++) {
                 skills_name[i] = skills.get(i).getName();
@@ -177,7 +192,7 @@ public class Dice20 extends AppCompatActivity {
             sp_skillChoice.setAdapter(adapterSkills);
         }else{
             num_skill = (int) this.getIntent().getSerializableExtra("num_skill");
-            System.out.println("DICE 20 CONTEXT => "+num_skill);
+            //System.out.println("DICE 20 CONTEXT => "+num_skill);
         }
 
         sp_complication = new Spinner(Dice20.this);

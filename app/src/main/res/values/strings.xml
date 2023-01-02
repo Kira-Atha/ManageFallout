@@ -45,5 +45,5 @@
     <string name="button_save">Créer</string>
     <string name="problemPersonalAsset">Impossible de choisir cet atout personnel : niveau de la compétence supérieur à 3 et le niveau du joueur est inférieur à 3 !</string>
     <string name="cantCreate">Veuillez choisir un pseudo et une origine !</string>
-    <string name="problemSPECIAL">Total des statistiques supérieur à 40 ou statistique inférieure à 4 ou statistique supérieure à 10</string>
+    <string name="problemSPECIAL">(1) D\'abord choisir un nom, une origine et créer \n(2) Total des statistiques supérieur à 40 \n(3) OU statistique inférieure à 4 \n(4) OU statistique supérieure à 10</string>
 </resources>

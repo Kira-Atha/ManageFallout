@@ -31,7 +31,4 @@ public class DatabaseAccess {
             this.db.close();
         }
     }
-
-
-
 }

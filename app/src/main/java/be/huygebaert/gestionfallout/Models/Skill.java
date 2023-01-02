@@ -1,7 +1,12 @@
 package be.huygebaert.gestionfallout.Models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import be.huygebaert.gestionfallout.AccessDB.DAOSkill;
 import be.huygebaert.gestionfallout.Tools.Fallout;
@@ -58,5 +63,18 @@ public class Skill implements Serializable {
     }
     public static Skill find(int id){
         return daoSkill.find(id);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Skill skill = (Skill) o;
+        return name.equals(skill.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return getName().hashCode();
     }
 }

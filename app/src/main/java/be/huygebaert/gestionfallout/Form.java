@@ -96,13 +96,14 @@ public class Form extends AppCompatActivity {
                             String exp_value = add_exp.getText().toString();
                             player.earnExp(Integer.parseInt(exp_value));
                             reloadActivity();
+
                             /*
                             tv_exp_curr.setText(new StringBuilder().append(player.getExp()).append("/").append(player.getMaxExp()).toString());
                             tv_level_curr.setText(String.valueOf(player.getLevel()));
                             tv_hp_curr.setText(new StringBuilder().append(player.getHpCurr()).append("/").append(player.getHpMax()).toString());
-
-                             */
+                            */
                         }
+
                     });
                     alert.show();
                     //send to db XP/lvl
@@ -251,6 +252,11 @@ public class Form extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -424,9 +430,10 @@ public class Form extends AppCompatActivity {
                 butt_add.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (!player.updateSPECIALTab(butt_add.getId(), "add")) {
+                        if (player.getId() == 0 || !player.updateSPECIALTab(butt_add.getId(), "add")) {
                             Toast.makeText(getApplication().getBaseContext(), R.string.problemSPECIAL, Toast.LENGTH_LONG).show();
                         } else {
+                            //reloadSPECIAL();
                             reloadActivity();
                         }
                     }
@@ -477,5 +484,22 @@ public class Form extends AppCompatActivity {
         intent.putExtra("player",player);
         startActivity(intent);
         this.finish();
+    }
+
+    public void reloadSPECIAL(){
+        tv_strong.setText("FOR");
+        tv_strong.setText(new StringBuilder().append(tv_strong.getText()).append(" ").append(String.valueOf(player.getStrong())));
+        tv_perception.setText("PER");
+        tv_perception.setText(new StringBuilder().append(tv_strong.getText()).append(" ").append(String.valueOf(player.getPerception())));
+        tv_endurance.setText("END");
+        tv_endurance.setText(new StringBuilder().append(tv_strong.getText()).append(" ").append(String.valueOf(player.getEndurance())));
+        tv_charisma.setText("CHR");
+        tv_charisma.setText(new StringBuilder().append(tv_strong.getText()).append(" ").append(String.valueOf(player.getCharisma())));
+        tv_intelligence.setText("INT");
+        tv_intelligence.setText(new StringBuilder().append(tv_strong.getText()).append(" ").append(String.valueOf(player.getIntelligence())));
+        tv_agility.setText("AGI");
+        tv_agility.setText(new StringBuilder().append(tv_strong.getText()).append(" ").append(String.valueOf(player.getAgility())));
+        tv_luck.setText("CHA");
+        tv_luck.setText(new StringBuilder().append(tv_strong.getText()).append(" ").append(String.valueOf(player.getLuck())));
     }
 }

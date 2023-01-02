@@ -42,6 +42,7 @@ public class Player implements Serializable {
     private static DAOSkill daoSkill = new DAOSkill(Fallout.getAppContext());
 
     public Player(){
+        this.id = 0;
         this.pseudo ="choisir";
         this.race = "choisir";
         this.hpMax = getHpMax();
