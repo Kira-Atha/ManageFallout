@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">GestionFallout</string>
-    <string name="button_bag">Inventaire</string>
+    <string name="button_bag">Sac</string>
     <string name="button_notes">Notes</string>
-    <string name="button_abilities">Aptitudes</string>
+    <string name="button_abilities">Apt.</string>
     <string name="button_form">Fiche</string>
     <string name="title_form">Fiche</string>
     <string name="title_bag">Inventaire</string>

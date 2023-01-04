@@ -48,7 +48,7 @@ public class ChooseCharacter extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     idPlayer = view.getId();
-                    intent = new Intent(ChooseCharacter.this, Form.class);
+                    intent = new Intent(ChooseCharacter.this, Sheet.class);
                     playerChoosen = Player.find(idPlayer);
                     intent.putExtra("player",playerChoosen);
                     startActivity(intent);
@@ -59,7 +59,7 @@ public class ChooseCharacter extends AppCompatActivity {
         button_new_sheet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(ChooseCharacter.this,Form.class);
+                intent = new Intent(ChooseCharacter.this,Sheet.class);
                 startActivity(intent);
             }
         });

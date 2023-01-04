@@ -69,8 +69,34 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
             values.put("NameSkill", name);
             db.insert("Skill", null, values);
         }
+        db.execSQL("CREATE TABLE Ability (\n" +
+                "    IdAbility          NUMERIC PRIMARY KEY,\n" +
+                "    NameAbility        TEXT,\n" +
+                "    LevelMaxAbility    NUMERIC,\n" +
+                "    LevelUpAbility     NUMERIC,\n" +
+                "    LevelMinPlayer     NUMERIC,\n" +
+                "    DescriptionAbility TEXT,\n" +
+                "    BonusFOR           INTEGER,\n" +
+                "    BonusPER           NUMERIC,\n" +
+                "    BonusEND           NUMERIC,\n" +
+                "    BonusCHR           NUMERIC,\n" +
+                "    BonusINT           NUMERIC,\n" +
+                "    BonusAGI           NUMERIC,\n" +
+                "    BonusCHA           NUMERIC,\n" +
+                "    BonusPersonalAsset NUMERIC\n" +
+                ");\n");
 
-
+        db.execSQL("CREATE TABLE Player_Ability (\n" +
+                "    IdAbility        NUMERIC REFERENCES Ability (IdAbility) ON DELETE CASCADE\n" +
+                "                                                            ON UPDATE CASCADE,\n" +
+                "    IdPlayer         NUMERIC REFERENCES Player (IdPlayer) ON DELETE CASCADE\n" +
+                "                                                          ON UPDATE CASCADE,\n" +
+                "    CurrLevelAbility NUMERIC,\n" +
+                "    PRIMARY KEY (\n" +
+                "        IdAbility,\n" +
+                "        IdPlayer\n" +
+                "    )\n" +
+                ");\n");
 
     }
 
