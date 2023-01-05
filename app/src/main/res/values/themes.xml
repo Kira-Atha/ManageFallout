@@ -12,6 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- textsize -->
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">11sp</item>
     </style>
 </resources>

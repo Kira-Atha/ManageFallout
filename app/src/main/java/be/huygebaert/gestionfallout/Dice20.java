@@ -154,7 +154,7 @@ public class Dice20 extends AppCompatActivity {
             alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    intent = new Intent(Dice20.this,Form.class);
+                    intent = new Intent(Dice20.this,Sheet.class);
                     intent.putExtra("player",player);
                     startActivity(intent);
                     Dice20.this.finish();

@@ -23,7 +23,7 @@ public class Notes extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.button_form:
-                    intent = new Intent(Notes.this, Form.class);
+                    intent = new Intent(Notes.this, Sheet.class);
                     startActivity(intent);
                     break;
             }

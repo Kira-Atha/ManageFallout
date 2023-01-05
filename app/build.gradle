@@ -37,4 +37,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0-rc01'
 }

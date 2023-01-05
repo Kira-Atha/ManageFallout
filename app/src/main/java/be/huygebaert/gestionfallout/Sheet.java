@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +60,7 @@ public class Sheet extends AppCompatActivity {
                         if (races[i].length() > 4) {
                             race = races[i].substring(0, 3);
                         }
-                        tv_race_choosen.setText(race);
+                        tv_race_choosen.setText(race+" ");
                         player.setRace(race);
                         if (race.equals("Super mutant".substring(0, 3)) || race.equals("Goule".substring(0, 3)) || race.equals("Mister Handy".substring(0, 3))) {
                             tv_def_ra_curr.setText("IMMU");
@@ -109,7 +110,7 @@ public class Sheet extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             String hp_value = minus_hp.getText().toString();
                             player.takingDamage(Integer.parseInt(hp_value));
-                            tv_hp_curr.setText(new StringBuilder().append(player.getHpCurr()).append("/").append(player.getHpMax()).toString());
+                            tv_hp_curr.setText(new StringBuilder().append(" ").append(player.getHpCurr()).append("/").append(player.getHpMax()).toString());
                         }
                     });
                     alert.show();
@@ -301,12 +302,12 @@ public class Sheet extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
-        et_pseudo.setText(player.getPseudo());
+        et_pseudo.setText(player.getPseudo()+" ");
 
         //race
         tv_race_choosen = findViewById(R.id.tv_race_choosen);
         tv_race_choosen.setOnClickListener(onClickListener);
-        tv_race_choosen.setText(player.getRace());
+        tv_race_choosen.setText(player.getRace()+" ");
         if (!player.getRace().equals("choisir") && !player.getPseudo().equals("choisir")) {
             tv_race_choosen.setEnabled(false);
             et_pseudo.setEnabled(false);
@@ -314,16 +315,16 @@ public class Sheet extends AppCompatActivity {
 
         //level-xp
         tv_level_curr = findViewById(R.id.tv_level_curr);
-        tv_level_curr.setText(String.valueOf(player.getLevel()));
+        tv_level_curr.setText(String.valueOf(player.getLevel())+" ");
         tv_exp_curr = findViewById(R.id.tv_exp_curr);
 
         Button button_exp_add = findViewById(R.id.button_exp_add);
         button_exp_add.setOnClickListener(onClickListener);
-        tv_exp_curr.setText(new StringBuilder().append(player.getExp()).append("/").append(player.getMaxExp()).toString());
+        tv_exp_curr.setText(new StringBuilder().append(player.getExp()).append("/").append(player.getMaxExp()).append(" "));
 
         //hp
         tv_hp_curr = findViewById(R.id.tv_hp_curr);
-        tv_hp_curr.setText(new StringBuilder().append(player.getHpCurr()).append("/").append(player.getHpMax()).toString());
+        tv_hp_curr.setText(new StringBuilder().append(player.getHpCurr()).append("/").append(player.getHpMax()).append(" "));
 
         Button button_hp_add = findViewById(R.id.button_hp_add);
         button_hp_add.setOnClickListener(onClickListener);
@@ -361,25 +362,25 @@ public class Sheet extends AppCompatActivity {
         tv_def_curr.setText(String.valueOf(player.getDef()));
         //SPECIAL
         tv_strong = findViewById(R.id.tv_strong);
-        tv_strong.setText(new StringBuilder().append(tv_strong.getText()).append(" ").append(String.valueOf(player.getStrong())));
+        tv_strong.setText(new StringBuilder().append(tv_strong.getText()).append(" ").append(String.valueOf(player.getStrong())).append(" "));
 
         tv_perception = findViewById(R.id.tv_perception);
-        tv_perception.setText(new StringBuilder().append(tv_perception.getText()).append(" ").append(String.valueOf(player.getPerception())).toString());
+        tv_perception.setText(new StringBuilder().append(tv_perception.getText()).append(" ").append(String.valueOf(player.getPerception())).append(" "));
 
         tv_endurance = findViewById(R.id.tv_endurance);
-        tv_endurance.setText(new StringBuilder().append(tv_endurance.getText()).append(" ").append(String.valueOf(player.getEndurance())).toString());
+        tv_endurance.setText(new StringBuilder().append(tv_endurance.getText()).append(" ").append(String.valueOf(player.getEndurance())).append(" "));
 
         tv_charisma = findViewById(R.id.tv_charisma);
-        tv_charisma.setText(new StringBuilder().append(tv_charisma.getText()).append(" ").append(String.valueOf(player.getCharisma())).toString());
+        tv_charisma.setText(new StringBuilder().append(tv_charisma.getText()).append(" ").append(String.valueOf(player.getCharisma())).append(" "));
 
         tv_intelligence = findViewById(R.id.tv_intelligence);
-        tv_intelligence.setText(new StringBuilder().append(tv_intelligence.getText()).append(" ").append(String.valueOf(player.getIntelligence())).toString());
+        tv_intelligence.setText(new StringBuilder().append(tv_intelligence.getText()).append(" ").append(String.valueOf(player.getIntelligence())).append(" "));
 
         tv_agility = findViewById(R.id.tv_agility);
-        tv_agility.setText(new StringBuilder().append(tv_agility.getText()).append(" ").append(String.valueOf(player.getAgility())).toString());
+        tv_agility.setText(new StringBuilder().append(tv_agility.getText()).append(" ").append(String.valueOf(player.getAgility())).append(" "));
 
         tv_luck = findViewById(R.id.tv_luck);
-        tv_luck.setText(new StringBuilder().append(tv_luck.getText()).append(" ").append(String.valueOf(player.getLuck())).toString());
+        tv_luck.setText(new StringBuilder().append(tv_luck.getText()).append(" ").append(String.valueOf(player.getLuck())).append(" "));
 
         //grid view
         //GridView gridSPECIAL = findViewById(R.id.gridSPECIAL);
@@ -398,22 +399,13 @@ public class Sheet extends AppCompatActivity {
         button_dice_20.setOnClickListener(onClickListener);
 
 //SPECIAL
-        LinearLayout layoutAdd = findViewById(R.id.layout_SPECIAL_add);
-        layoutAdd.setGravity(Gravity.CENTER);
-        LinearLayout layoutMinus = findViewById(R.id.layout_SPECIAL_minus);
-        layoutMinus.setGravity(Gravity.CENTER);
-        LinearLayout layoutParams = new LinearLayout(Sheet.this);
+        TableRow rowSPECIAL = findViewById(R.id.rowSPECIAL);
         ConstraintLayout layoutForm = findViewById(R.id.constraint_layout);
-        LinearLayout layoutSpecial = findViewById(R.id.layout_SPECIAL);
         TextView specialRemaining = new TextView(Sheet.this);
         specialRemaining.setText(new StringBuilder().append(player.getTotalSpecial()).append("/40").toString());
-        layoutSpecial.addView(specialRemaining);
-        layoutForm.addView(layoutParams);
+        rowSPECIAL.addView(specialRemaining);
 
-        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) layoutParams.getLayoutParams();
-        params.width = 30;
-        params.rightMargin = 130;
-
+        TableRow rowAdd = findViewById(R.id.rowAdd);
         if (player.getTotalSpecial() != 40) {
             for (int i = 0; i < 7; i++) {
                 TextView butt_add = new TextView(Sheet.this);
@@ -430,13 +422,13 @@ public class Sheet extends AppCompatActivity {
                         }
                     }
                 });
-                butt_add.setLayoutParams(params);
-                layoutAdd.addView(butt_add);
+                rowAdd.addView(butt_add);
                 if (player.getSPECIALTab()[i] == 10) {
                     butt_add.setVisibility(View.INVISIBLE);
                 }
             }
 
+            TableRow rowMinus = findViewById(R.id.rowMinus);
             for (int i = 0; i < 7; i++) {
                 TextView butt_minus = new TextView(Sheet.this);
                 butt_minus.setText("-");
@@ -451,8 +443,7 @@ public class Sheet extends AppCompatActivity {
                         }
                     }
                 });
-                butt_minus.setLayoutParams(params);
-                layoutMinus.addView(butt_minus);
+                rowMinus.addView(butt_minus);
                 if (player.getSPECIALTab()[i] == 4) {
                     butt_minus.setVisibility(View.INVISIBLE);
                 }

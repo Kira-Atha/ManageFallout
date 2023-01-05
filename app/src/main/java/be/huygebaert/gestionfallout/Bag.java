@@ -23,7 +23,7 @@ public class Bag extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.button_form:
-                    intent = new Intent(Bag.this, Form.class);
+                    intent = new Intent(Bag.this, Sheet.class);
                     startActivity(intent);
                     break;
             }

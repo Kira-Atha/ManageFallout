@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import be.huygebaert.gestionfallout.Dice20;
-import be.huygebaert.gestionfallout.Form;
 import be.huygebaert.gestionfallout.Models.Player;
 import be.huygebaert.gestionfallout.Models.Skill;
 import be.huygebaert.gestionfallout.R;
@@ -73,7 +72,7 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
         public TextView tv_skill_name;
         public TextView tv_skill_level;
         public CheckBox box_personalAsset;
-        public TextView add_skill;
+        public Button add_skill;
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -87,7 +86,7 @@ public class AdapterSkill extends ArrayAdapter<Skill> {
                 holder.tv_skill_name = (TextView) vi.findViewById(R.id.tv_skill_name);
                 holder.tv_skill_level = (TextView) vi.findViewById(R.id.tv_skill_level);
                 holder.box_personalAsset = (CheckBox) vi.findViewById(R.id.box_personalAsset);
-                holder.add_skill = (TextView) vi.findViewById(R.id.add_skill);
+                holder.add_skill = (Button) vi.findViewById(R.id.add_skill);
                 vi.setTag(holder);
             } else {
                 holder = (ViewHolder) vi.getTag();
