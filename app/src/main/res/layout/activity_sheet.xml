@@ -87,11 +87,12 @@
         android:id="@+id/layoutEXP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="right|bottom"
         app:layout_constraintBottom_toTopOf="@id/layout_identity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tableLayout_sheet"
-        android:gravity="right|bottom">
+        app:layout_constraintTop_toTopOf="@id/tableLayout_sheet">
 
         <TextView
             android:id="@+id/tv_level"
@@ -136,7 +137,6 @@
         app:layout_constraintTop_toTopOf="@id/layout_skills">
 
         <TableRow android:id="@+id/rowSPECIAL">
-
             <TextView
                 android:id="@+id/tv_strong"
                 android:layout_width="wrap_content"
@@ -182,15 +182,21 @@
                 android:text="@string/tv_luck" />
         </TableRow>
 
-        <TableRow android:id="@+id/rowAdd" />
+        <TableRow
+            android:id="@+id/rowAdd"
+            android:gravity="center"/>
 
-        <TableRow android:id="@+id/rowMinus" />
+        <TableRow
+            android:id="@+id/rowMinus"
+            android:gravity="center"/>
     </TableLayout>
 
     <LinearLayout
         android:id="@+id/layout_skills"
         android:layout_width="300dp"
         android:layout_height="450dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/layout_dice"
         app:layout_constraintEnd_toStartOf="@+id/layout_stats"

@@ -83,7 +83,15 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
                 "    BonusINT           NUMERIC,\n" +
                 "    BonusAGI           NUMERIC,\n" +
                 "    BonusCHA           NUMERIC,\n" +
-                "    BonusPersonalAsset NUMERIC\n" +
+                "    BonusSPECIAL       NUMERIC,\n" +
+                "    BonusPersonalAsset NUMERIC,\n" +
+                "    PreFOR             NUMERIC,\n" +
+                "    PrePER             NUMERIC,\n" +
+                "    PreEND             NUMERIC,\n" +
+                "    PreCHR             NUMERIC,\n" +
+                "    PreINT             NUMERIC,\n" +
+                "    PreAGI             NUMERIC,\n" +
+                "    PreCHA             NUMERIC\n" +
                 ");\n");
 
         db.execSQL("CREATE TABLE Player_Ability (\n" +
@@ -96,6 +104,16 @@ public abstract class DAO<T> extends SQLiteOpenHelper {
                 "        IdAbility,\n" +
                 "        IdPlayer\n" +
                 "    )\n" +
+                ");\n");
+
+
+
+        db.execSQL("CREATE TABLE Note (\n" +
+                "    IdNote          NUMERIC PRIMARY KEY,\n" +
+                "    TitleNote       TEXT,\n" +
+                "    DescriptionNote TEXT,\n" +
+                "    IDPlayer                REFERENCES Player (IdPlayer) ON DELETE CASCADE\n" +
+                "                                                         ON UPDATE CASCADE\n" +
                 ");\n");
 
     }

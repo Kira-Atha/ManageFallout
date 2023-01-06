@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import be.huygebaert.gestionfallout.AccessDB.DAOAbility;
+import be.huygebaert.gestionfallout.AccessDB.DAONote;
 import be.huygebaert.gestionfallout.AccessDB.DAOPlayer;
 import be.huygebaert.gestionfallout.AccessDB.DAOSkill;
 import be.huygebaert.gestionfallout.Tools.Fallout;
@@ -38,8 +40,11 @@ public class Player implements Serializable {
     private int maxAsset = 3;
     private List<Skill> playerSkills;
     private Bag playerBag;
+    private List<Note> playerNotes;
     private static DAOPlayer daoPlayer = new DAOPlayer(Fallout.getAppContext());
     private static DAOSkill daoSkill = new DAOSkill(Fallout.getAppContext());
+    private static DAOAbility daoAbility = new DAOAbility(Fallout.getAppContext());
+    private static DAONote daoNote = new DAONote(Fallout.getAppContext());
 
     public Player(){
         this.id = 0;
@@ -75,6 +80,12 @@ public class Player implements Serializable {
         this.hpCurr = hpCurr;
         this.paCurr = paCurr;
         this.playerBag = new Bag();
+
+        this.playerNotes = new ArrayList<>();
+
+        if(findPlayerNotes().size()>0){
+            playerNotes = findPlayerNotes();
+        }
     }
 
     public String getPseudo() {
@@ -484,5 +495,13 @@ public class Player implements Serializable {
     private List<Skill> findPlayerSkills(){
         return daoSkill.findPlayerSkills(this);
     }
-
+    public ArrayList<Ability> findPlayerAbilities(){
+        return daoAbility.findPlayerAbilities(this);
+    }
+    public boolean choosePlayerAbility(Ability ability){
+        return daoAbility.choosePlayerAbility(this,ability);
+    }
+    public ArrayList<Note> findPlayerNotes(){
+        return daoNote.findPlayerNote(this);
+    }
 }
