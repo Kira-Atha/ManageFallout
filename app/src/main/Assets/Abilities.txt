@@ -1,0 +1,109 @@
+NameAbility	DescriptionAbility	LevelMinPlayer	LevelMaxAbility	LevelUpAbility	pFOR	pPER	pEND	pCHR	pINT	pAGI	pCHA	bFOR	bPER	bEND	bCHR	bINT	bAGI	bCHA	bSPECIAL	bPersonalAsset	bDEFra
+Ami des animaux	Au rang 1, à chaque fois qu'un mammifère, lézard ou insecte vous attaquer, jeter un 1D6. Si vous obtenez un résultat autre qu'un effet, la créature choisit de ne pas vous attaquer, bien qu'elle puisse s'en prendre à quelqu'un d'autre. Au rang 2, vous pouvez entreprendre un test de CHR+survie de difficulté 2 au prix d'une action capitale. En cas de réussite, l'animal vous considère comme amical et attaquera quiconque s'en prend à vous. Cette aptitude ne fonctionne pas sur les animaux redoutables ou légendaires. 	1	2	5				6													
+Amphibie	L'eau est votre alliée. Au rang 1, vous ne subissez plus de dégâts de radiation lorsque vous navez dans une eau irradiée et vous pouvez retenir votre souffle deux fois plus longtemps. Au rang 2, les ennemis ajoutent +2 à la difficulté de leurs tests pour vous repérer lorsque vous êtes immergé.	1	2	3			5														
+Antiradiations	Votre résistance aux dégâts de radiations quelle que soit la localisation augmente de 1 par rang dans cette apatitude.	1	2	4			8														1
+Armurier	Vous pouvez modifier les pièces d'armure grâce à des mods d'armure. Chaque rang dans cette aptitude débloque un rang de mod.  ( Rang 1 débloque mod lvl 1, rang 2 mod lvl 2, etc.)	1	4	4	5				6												
+Barbare	"Votre force influe sur votre résistance aux degats. 
+
+FOR 7-8 : Rd Ballistique +1 
+FOR 9-10 : Rd ballistique +2 
+FOR 11+ : Rd ballistique +3 "	4			7																
+Barycentre	Viser le buste n'augmente pas la difficulté des jets et permet de relancer 1D20 de l'attaque	1								7											
+Beau parleur	Relancer 1D20 sur tous les tests de troc / Discours	1						6													
+Blitz	"Rang 1 : Si vous vous placez près d'un ennemi et faites une attaque de corps à corps, permet de relancer 1D20 sur le jet d'attaque. 
+
+Rang 2 : cette attaque fait + 1D6 de dégats"	1	3	2					9												
+Boyaux plombés	"Rang 1 : relance 1D6 qui pour savoir si vous prenez des dégâts de radiation en consommant de la nourriture. 
+
+Rang 2 : immunité aux dégats de radiation lorsque vous consommez de la nourriture / boisson irradiée. "	1	4	2			6														
+Bricolage	Peut réparer un objet sans pièce détachée, mais l'objet est moins efficace et peut casser	1																			
+Canigou	Un chien vous accompagne et est votre allié. Ce dernier dispose de sa propre fiche.	1		1				5													
+Chasseur	Si une créature est un mammifère, Lézard, insecte ou mutant, les attaques (D6) reçoivent  automatiquement l'effet brutal	1		1			6														
+Chimie	Les drogues durent 2 fois plus longtemps	1							7												
+Chirurgien de la chevrotine	Les attaques effectuées avec un fusil à pompes obtiennent l'effet de dégâts perforants 1. Si elles bénéficient déjà de cet effet, la valeur augmente de 1.	1			5					7											
+Cible mouvante	+1 défense en cas de sprint	1								6											
+Cogneur	Lorsque vous effectuez une attaque au corps à corps en cognant avec votre arme à feu, votre attaque obtient l'effet de dégât Brutal	1			6																
+Commandant laser	Lorsque vous effectuez une attaque avec une arme à énergie à distance, ajouter 1D6 aux dégâts de l'arme par rang dans cette aptitude.	2	2	4		8															
+Commando	Lorsque vous effectuez une attaque à distance avec une arme dotée d'une cadence de tir supérieure ou égale à 3 ( sauf arme lourde ), ajoutez 1D6 aux dégâts de l'arme par rang dans cette aptitude.	2	2	3						8											
+Compréhension	Possibilité de doubler les effets bonus des magazines	1							6												
+Concerto de conserves	Lorsque vous fouillez un lieu contenant de la nourriture, vous découvrez un aliment supplémentaire, tiré au hasard et ce, sans dépenser de PA.	1									5										
+Coups super critiques	Lorsque vous infligez au moins un dégâts à un ennemi, vous pouvez dépenser un point de CHA pour lui faire subir AUTOMATIQUEMENT un coup critique et ainsi causer une blessure.	1									9										
+Dégainage Rapide	Dégainer une arme ou un objet ne coûte pas d'action mineure	1								6											
+Dénicheur de trésors	Chaque fois que vous lancez les dés pour savoir combien d'argent vous trouvez, vous en trouvez plus. Au rang 1, vous trouvez +3D6 supplémentaires de capsules. Au rang 2, vous trouvez +6D6. Au rang  3, vous trouvez +10D6 supplémentaires.	2	3	4							5										
+Doué	Choisissez deux attributs SPECIAL et augmentez leur valeur de 1	1																-1	2		
+Éducation	Vous possédez un atout personnel supplémentaire	1																		1	
+Énergie solaire	Vous éliminez 1 point de dégâts de radiation par heure passée à la lumière directe du soleil	1				7															
+Entomologiste	Attaques perforantes contre les insectes	1							7												
+Évolution forcée	Vous mesurez plus de 2m10 et votre corps est épais et musclé. Votre peau est verte, jaune ou grisâtre. Vous ne semblez pas vieillir mais vous êtes stérile. Les armures que vous souhaitez porter doivent être adaptés à votre taille. Cette condition physique vous permet de gagner 2 en FOR et 2 end END, augmentant aussi la limite de ces statistiques à 12 au lieu de 10. En revanche, chaque compétence est limitée au rang 4 et votre INT et CHR ne peuvent excéder 6. Vous êtes immunisé aux radiations et aux poisons																				
+Exercice	Augmentez l'un de vos attributs SPECIAL de 1. 	2	10	2															1		
+Expert en démolition	Lorsque vous effectuez une attaque à l'aide d'une arme dotée de la qualité Zone d'impact, l'attaque obtient l'effet de dégât Brutal. De plus, vous débloquez les recettes d'explosifs qui nécessitent de posséder cette aptitude.	1				6					6										
+Expert en robotique	Au rang 1, vous pouvez modifier l'armure des robots, leurs armes montées et leurs modules avec des mods de rang 1. Au rang 2, vous débloquez l'accès aux mods de rangs 2 et réduisez de 1 de tous vos tests de répérations de robots. Au rang 3, vous débloquez l'accès aux mods de rang 3 et vous pouvez reprogrammer les robots pour qu'ils remplissent une toute autre fonction ou altérer leur comportement, si le MJ vous y autorise.	2	3	4					8												
+Fana d'armes	Vous pouvez modifier les armes légères grâce à des mods d'arme. Chaque rang dans cette aptitude débloque un rang de mod. ( rang 1, mod 1, … )	2	4	4					6												
+Fana de capsules	Lorsque vous vendez ou achetez des objets, vous pouvez augmenter ou diminuer les biens échangés de 10%	1						5													
+Fantôme	Premier d20 supplémentaire gratuit pour jet de discrétion dans l'ombre	1				5				6											
+Farfouilleur	Chaque fois que vous lancez les dés pour savoir combien de munition vous trouvez, vous en trouvez plus. Au rang 1, vous trouvez +3D6 supplémentaires de munitions. Au rang 2,  vous trouvez +6D6 supplémentaires de munitions. Au rang 3, vous trouvez +10D6 supplémentaires de munitions. Vous trouvez toujours le même type de munition déniché au départ. S'il y a plusieurs types de munition, celui dont la rareté est plus faible est choisi.	1	3	5							5										
+Farmer la pharma	Lorsque vous fouillez un lieu contenant des médicaments ou des drogues, vous découvrez un objet supplémentaire, tiré au hasard et ce, sans dépenser de PA.	1									6										
+Fétard.e	Vous ne pouvez pas devenir dépendant.e aux boissons alcoolisées. Chaque fois que vous buvez ce type de boisson, vous regagnez +2 PV.	1					6	7													
+Finesse	Une fois par rencontre de combat, vous pouvez relancer l'intégralité des D6 d'un unique jet de dégâts sans dépenser de point de chance.	1								9											
+Force de frappe	Lorsque vous effectuez une attaque au corps à corps avec une arme de corps à corps à deux mains, votre attaque obtient l'effet de dégâts Brutal.	1			8																
+Forgeron	Vous pouvez modifier les armes de corps à corps grâce à des mods d'arme. Chaque rang dans cette aptitude débloque un rang de mod (rang1, mod1, … )	2	3	4	6																
+Frappe perforante	Les attaques que vous effectuez à mains nues ou avec une arme de corps à corps à lames obtiennent l'effet de dégâts Perforant 1. Si elles bénéficient déjà de cet effet, la valeur de ce dernier augmente de 1.	1			7																
+Fusilier	Lorsque vous effectuez une attaque avec une arme à distance à deux mains dotée d'une cadence de tire inférieure ou égale à 2 ( sauf arme lourde ), ajouter +1D6 aux dégâts de l'ârme par rang dans cette aptitude. Au rang 2, ajouter l'effet de dégâts perforant. Si déjà d'application, la valeur augmente de 1.	2	2	4						7											
+Fusion	Lorsque vous tuez un ennemi avec une arme à énergie, il explose. Jetez un nombre de D6 égal à la moitié de la valeur de dégât de l'arme ( arrondie à l'inférieur ). Pour chaque effet obtenu, une créature située à courte portée ou moins de la victime ( en commençant par la plus proche ) subit un nombre de points de dégâts énergétiques égal au total obtenu sur les D6.	1				10															
+Gringalet	Vous pouvez relancer 1D20 lors de tout test d'AGI basé sur l'équilibre ou sur les contorsions	1																			
+Guérison rapide	Lorsque vous effectuez un test d'END + SURVIE pour traiter vos propres blessures, le premier D20 supplémentaire est gratuit. La limite de 5D20 s'applique toujours à la réserve.	1					6														
+Guérisseur	"+1 PV soigné lors de ""porter secours"""	1																			
+Ho-Hisse	Lorsque vous effectuez une attaque à distance avec un projectile, vous pouvez dépenser 1PA pour augmenter d'un niveau la portée de l'arme. Courte à moyenne ou moyenne à longue.	1			8																
+Homme/Femme d'action	Lorsque vous dépensez des PA pour obtenir une action capitale supplémentaire, la difficulté n'augmente pas	1																			
+Infiltrateur	Peut relancer 1D20 lors de tout test de crochetage	1				8															
+Infirmier	Peut relancer 1D20 lors de tout test de porter secours	1							8												
+La chaîne de la cohésion	En tant que membre de la confrérie de l'Acier, vous êtes tenu de respecter la chaîne de commandement : la chaîne de cohésion. Vous devez suivre les ordres de vos supérieurs directs et vous êtes responsables de vos subordonnés. Si vous n'accomplissez pas votre devoir, vous êtes renvoyé de la Confrérie et votre matériel technologique est récupéré...par tous les moyens nécessaires.	1																			
+La taille compte	Lorsque vous effectuez une attaque à distance avec une arme lourde, ajoutez +1D6 aux dégâts de l'arme par rang dans cette aptitude. 	1	3	4			7			6											
+Locomotive	Au prix d'une action capitale, vous pouvez charger si vous portez une armure assistée ou êtes un super-mutant. Il s'agit d'une action de déplacement, vous ne pouvez donc pas vous déplacer ou sprinter au cours du même tour. Possible de charger à partir de la moyenne portée en réalisant un test FOR + ATHLETISME de difficulté 2. En cas de réussite, l'ennemi subit vos dégâts à mains nues normaux et vous le reversez. Au rang 2, ajoutez 1D6 à l'effet de dégâts étourdissants aux dégâts infligés. Certaines créatures massives peuvent ne pas être renversées. 	1	2	5	9		7														
+Main lourde	Votre bonus de dégâts au corps à corps augmente de +1 dé																				
+Mains lestes	Vous pouvez recharger plus rapidement vos armes à feu. Lorsque vous effectuez une attaque à distance, vous pouvez dépenser 2PA pour augmenter de 2 la cadence de tir de votre arme pour cette attaque uniquement.	1								8											
+Maître voleur	Lorsque vous entreprenez un test pour crocheter une serrure ou faire les poches de quelqu'un, la difficulté du test de votre adversaire pour vous reprérer augmente de 1.	1				8				9											
+Marchand de sable	Lorsque vous effectuez une attaque furtive avec une arme équipée d'un silencieux, ajoutez 2D6 aux dégâts de l'arme. Vous ne tirez aucun bénéfice de cette aptitude si vous portez une armure assistée.	1								9											
+Métabolisme rapide	Lorsque vous récupérez des PV par un autre moyen aque le reposn vous récupérez 1 PV supplémentaire par rang dans cette aptitude. 	1	3	3			6														
+Mystérieux étranger	De temps en temps, un mystérieur étranger vous vient en aide, avec des résultats mortels. Au début d'une rencontre de combat, vous pouvez dépenser un point de chance. Si vous le faites, le MJ peut faire apparaître, à n'importe quel moment, le mystérieux étranger. Il effectue une unique attaque à distance copntre un adversaire que vous avez déjà attaqué ou qui vient de vous attaquer, puis disparaît. S'il n'apparaît pas, le point de chance est récupéré. Le mystérieur étranger a 10 AGI et 6 en armes légères qui est un atout personnel. Il lance 3D20 pour son attaque et inflige 8D6 ballistique Brutaux et Perforants 1. Il est impossible de retrouver l'étranger.	1									7										
+Nature audacieuse	Lorsque vous entreprenez un test de compétence et achetez au moins 1D20 en octroyant des PA au meneur du jeu, vous pouvez relancer 1D20 du résultat. Incompatible avec nature prudente.	1									7										
+Nature Prudente	Si tu achètes au moins 1D20 en dépensant des PA, tu peux relancer 1d20	1				7															
+Né à l'abri	Votre jeunesse saine aux mains de médecins compétents implique que vous réduisez la difficulté de tous les tests d'END concernant les maladies. De plus, vous avez été bien éduqué et cela vous confère un atout personnel au choix supplémentaire. Vous pouvez avoir été victime d'expérience dans un abri. Une fois par quête, vous pouvez ainsi vivre des complications qui reflète la nature de cette expérimentation à laquelle vous avez participé contre votre gré. Si c'est le cas, vous regagnez un point de CHA.																			1	
+Ninja	Lorsque vous effectuez une attaque furtive à mains nues ou avec une arme de corps à corps, ajoutez 2D6 aux dégâts de l'arme. Vous ne tirez aucun bénéfice si vous portez une armure assistée.	1								8											
+Nyctalope	Difficulté due à l'obscurité réduite de 1	1				7															
+Physicien Nucléaire	"Avec une arme qui inflige des dégats de radiation ou avec l'effet radioactif, chaque effet inflige 1 point de dégâts de radiation supplémentaire.
+Les réacteurs à fusion disposent 3 charges supplémentaires"	1							9												
+Pied léger	Peut dépenser 1 PA pour annuler une complication sur un test d'Agilité. Peut relancer 1d20 aux tests pour éviter les pièges au sol	1																			
+Pirate	Réduit de 1 (jusqu'à 0) la difficulté des tests de piratage	1							8												
+Pisteur	Lorsque vous voyagez sur de longue distances dans la nature, un test de PER + SURVIE permet de diviser par deux le temps de trajet ( difficulté choisie par le MJ en fonction du terrain)	1				6	6														
+Pistolero	Lorsque vous effectuez une attaque avec une arme à distance à une main dotée d'une cadence de tir inférieure ou égale ç 2, ajoutez +1D6 aux dégâts de l'arme par rang dans cette aptitude. De plus, vous pouvez relancer le dé de localisation des dégâts.	2	2	4						7											
+Post humain nécrotique	Vous vieillissez plus lentement qu'un humain non irradié. Vous avez survécu à la grande guerre 2077, mais vous êtes stérile. Vous êtes victimes de discrimination car vous êtes un.e goule… Les tests de charisme peuvent être compliqués suivant la croyance de l'interlocuteur. La survie devient un atout personnel et vous gagnez 2 points. Les radiations vous soignent (1PV par tranche de 3 dégâts)	1																			
+Poussée d'adrénaline	Lorsque vos points de vie ne sont pas à leur maximum, considérez que votre FORCE est égale à 10 quand vous entreprenez un test qui l'implique, ou effectuez une attaque au corps à corps.	1			7																
+Présence terrifiante	Vous pouvez relancer 1D20 lors de tous les tests de DISCOURS destiné à menacer ou effrayer quelqu'un.  Au rang 2, en plein combat, vous pouvez consacrer une action capitale à tenter de menacer un ennemi situé à portée moyenne ou moins, grâce à un test de FOR+DISCOURS de difficulté 2. En cas de réussite, cet ennemi doit s'éloigner de vous au cours de son prochain tour ( il peut attaquer quelqu'un d'autre )	3	2	5	6			8													
+Pyromane	Lorsque vous effectuez une attaque avec une arme basée sur le feu, ajoutez +1D6 aux dégâts de l'arme par rang dans cette aptitude.	2	3	4		6															
+Rage de nerd !	Lorsque vous disposez de moins de 1/4 de vos PV max, ajoutez +1 à votre RD balistique, +1 à votre RD énergétiques et +1 aux dégâts de toutes vos attaques. Au rang 2, ces valeurs sont augmentées à 2. Au rang 3, à 3.	2	3	5					8												
+Ragoût de serpent	Votre résistance aux dégâts de poison augmente de 2. 	1				7															
+Recycleur	Lorsque vous recyclez un objet, vous pouvez obtenir des composants peu fréquents au même titre que des composants fréquents. Au rang 2, vous pouvez également obtenir des composants rares.	3	2	5																	
+Réfracteur	Votre résistance aux dégâts énergétiques, quelle que soit la localisation, augmente de 1 par rang dans cette apatitude. 	1	2	4		6					7										
+Reins d'acier	Votre charge maximale augmente de 12,5 kg par rang dans cette aptitude. 	1	3	2	5																
+Résistance chimique	Au rang 1, jetez 1D6 de moins lorsque vous déterminez si vous devenez dépendant à une drogue. Au rang 2, vous ne pouvez plus être dépendant à une drogue.	1	2	4			7														
+Ricochet	Si un ennemi obtient une complication lorsqu'il vous prend pour cible d'une attaque à distance, vous pouvez dépenser 1 point de chance pour que son ricochet le touche. Résolvez les dégâts contre votre assaillant.	5									10										
+Robot mister Handy	Vous êtes doté d'une vision à 360° et de systèmes sensoriels améliorés qui vous permettent de détecter des odeurs, des produits chimiques et des radiations.  ( Complication -1 pour les tests de PER basé sur la vue et l'odorat ). Immunité aux dégâts de radiation et de poison. Vous ne retirez aucun bénéfice de la nourriture, des boissons et des drogues. Vous vous déplacez par propulsion, en flottant ( pas de contraintes de terrain ). Votre charge maximale est de 75 kg, à moins de modifier votre armure. Les blessures ne se guérissent qu'avec de la réparation. Le monde qui vous entoure n'est pas manipulable car vous n'avez pas de mains.	1																			
+Robustesse	Votre résistance aux dégâts balistiques augmente de 1 par rang dans cette aptitude.	1	2	4			6				6										
+Scientifique	Vous pouvez modifier les armes à énergie grâce à des mods d'arme et vous pouvez aussi fabriquer certains mods d'armure avancés. Chaque rang débloque un rang de mod.	2	4	4					6												
+Sens Affûtés	"A portée courte, si vous utilisez l'action mineur ""viser"", la prochaine attaque est perforante (ou l'effet perforant augmente de 1)"	1				7															
+Sniper	"Avec armes à 2 mains ""Précise"", utiliser ""viser"" permet de choisir la localisation des dégâts sans augmenter la difficulté"	1				8				6											
+Source d'inspiration	Vous menez par l'exemple, en conséquence la réserve de groupe peut contenir 1 PA supplémentaire grâce à vous.	1						8													
+Spécialité bonus !	Vous pouvez choisir un atout personnel supplémentaire. Augmentez de 2 rangs la compétence sélectionnée.	5																			
+Squelette adamantin	Le montant de dégâts nécessaires pour vous infliger un coup critique augmente d'une valeur égale à vos rangs dans cette aptitude. Par exemple, si vous disposez d'un rang dans l'aptitude, vous subissez un coup critique lorsque vous recevez au moins 6 points de dégât, au lieu de 5 ou plus en temps normal.	1	3	3			7														
+Studieux	Augmentez deux de vos compétences de 1 rang ou l'une de vos compétences de 2 rangs. 	3	10	3																	
+Tir Groupé	Si vous effectuez une attaque à distance et dépensez des munitions pour augmenter les dégâts, vous pouvez relancer jusqu'à 3D6 du jet de dégâts	1				8				6											
+Tir rapide	Si vous entreprenez une seconde action capitale au combat afin d'effectuer une attaque à distance, il ne vous coûte que 1 PA et non 2																				
+Tire-au-flanc	Au rang 1, vsi vous entreprenez l'action capitale Se protéger, réduisez de 1 la difficulté du test de compétence. Au rang 2, améliorer votre défense ne coûte plus qu'1 PA. 	2	4	6						6											
+Tonton flingueur	Lorsque vous réussissez une attaque à distance, vous pouvez dépenser 1PA et 1 munition pour toucher une cible supplémentaire située à portée courte ou inférieure de votre cible initiale. Ces deux cibles subissent les mêmes dégâts. Au rang 2, vous pouvez dépenser 2 PA et 2 munitions pour toucher 2 cibles... Au rang 3, 3 PA, 3 munitions 3 cibles,...	1	3	5						10											
+Tueur	Lorsque vous infligez au moins 1 point de dégât à un ennemi avec une attaque à mains nues ou une arme de corps à corps, vous pouvez dépenser 1 point de chance pour lui faire subir automatiquement un coup critique sur la localisation touchée et ainsi causer une blessure.	1			8																
+Tueur en série	Lorsque vous tuez au moins un ennemi avec une attaque, jetez 1D6. Si vous obtenez un effet, ajoutez 2PA à la réserve du groupe.	1									8										
+Vendeur de Junktown	Réduisez de 1 ( jusqu'à mini 0 ), la difficulté de tout test de CHR + TROC destiné à vendre ou acheter des biens.	1						8													
+Veuve noire/Gigolo	Relancez 1D20 lors de tout test de compétence basé sur le CHR et destiné à influencer un personnage du genre choisi. De plus, vos attaques infligent +1D6 de dégâts aux personnages du genre choisis.	1						6													
+Visée stable	Lorsque vous entreprenez l'action mineure Viser, vous pouvez, au choix, relancer 2D20 lors de votre première attaque de ce tour ou relancer 1D20 lors de toutes attaques lors de ce tour.	1			8					7											
+Vitalité	Ajoutez votre valeur d'ENDURANCE à votre maximum de points de vie. 	5	5	5																	

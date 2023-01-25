@@ -2,6 +2,7 @@ package be.huygebaert.gestionfallout.Models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import be.huygebaert.gestionfallout.AccessDB.DAOAbility;
 import be.huygebaert.gestionfallout.AccessDB.DAOPlayer;
@@ -16,7 +17,35 @@ public class Ability implements Serializable {
     private int[] preSPECIALtab;
     private static DAOAbility daoAbility = new DAOAbility(Fallout.getAppContext());
 
-    public Ability(){}
+    public Ability(List<String> attributes){
+        this.id = 0;
+        this.name = attributes.get(0);
+        this.description = attributes.get(1);
+        this.levelMaxAbility = Integer.parseInt(attributes.get(2));
+        this.levelUpAbility= Integer.parseInt(attributes.get(3));
+        this.levelMinPlayer = Integer.parseInt(attributes.get(4));
+        this.bonusPersonalAsset = Integer.parseInt(attributes.get(5));
+        this.bonusSPECIAL = Integer.parseInt(attributes.get(6));
+
+        this.bonusSPECIALtab = new int[7];
+        this.bonusSPECIALtab[0]=Integer.parseInt(attributes.get(7));
+        this.bonusSPECIALtab[1]=Integer.parseInt(attributes.get(8));
+        this.bonusSPECIALtab[2]=Integer.parseInt(attributes.get(9));
+        this.bonusSPECIALtab[3]=Integer.parseInt(attributes.get(10));
+        this.bonusSPECIALtab[4]=Integer.parseInt(attributes.get(11));
+        this.bonusSPECIALtab[5]=Integer.parseInt(attributes.get(12));
+        this.bonusSPECIALtab[6]=Integer.parseInt(attributes.get(13));
+
+        this.preSPECIALtab = new int[7];
+        this.preSPECIALtab[0]=Integer.parseInt(attributes.get(14));
+        this.preSPECIALtab[1]=Integer.parseInt(attributes.get(15));
+        this.preSPECIALtab[2]=Integer.parseInt(attributes.get(16));
+        this.preSPECIALtab[3]=Integer.parseInt(attributes.get(17));
+        this.preSPECIALtab[4]=Integer.parseInt(attributes.get(18));
+        this.preSPECIALtab[5]=Integer.parseInt(attributes.get(19));
+        this.preSPECIALtab[6]=Integer.parseInt(attributes.get(20));
+    }
+
     public Ability(int id,String name, int levelMaxAbility, int levelUpAbility, int levelMinPlayer,String description,int bonusFOR,int bonusPER,int bonusEND,int bonusCHR,int bonusINT,int bonusAGI,int bonusCHA,int bonusSPECIAL,int bonusPersonalAsset,int preFOR,int prePER,int preEND,int preCHR,int preINT,int preAGI,int preCHA){
         this.id = id;
         this.name = name;
@@ -107,10 +136,14 @@ public class Ability implements Serializable {
     public void setPreSPECIALtab(int[] preSPECIALtab) {
         this.preSPECIALtab = preSPECIALtab;
     }
-
-
     public static ArrayList<Ability> findAll(){
         return daoAbility.findAll();
+    }
+    public static boolean createAllAbilitiesOnce(ArrayList<String> excelValues){
+        return daoAbility.createAllAbilitiesOnce(excelValues);
+    }
+    public boolean createAbility(){
+        return daoAbility.create(this);
     }
 
 }

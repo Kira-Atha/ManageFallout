@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+/.assets
+DB.lo1
+DB.loo
+KeyFallout.jks
+app/src/main/assets/Database/FalloutDatabase.db
+app/src/main/assets/Database/Abilities.xlsx

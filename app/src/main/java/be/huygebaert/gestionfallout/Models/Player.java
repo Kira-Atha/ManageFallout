@@ -83,9 +83,12 @@ public class Player implements Serializable {
 
         this.playerNotes = new ArrayList<>();
 
+        /*
         if(findPlayerNotes().size()>0){
             playerNotes = findPlayerNotes();
         }
+
+         */
     }
 
     public String getPseudo() {

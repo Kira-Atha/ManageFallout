@@ -37,7 +37,7 @@ public class DAOPlayer extends DAO<Player> {
         values.put("PaCurrPlayer",player.getPaCurr());
 
         long newId = db.insert("Player", null, values);
-        if (newId != 1) {
+        if (newId != 0) {
             db.close();
             player.setId((int)newId);
             return true;
